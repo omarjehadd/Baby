@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#fffaf5" />
-<title>لعبة طويلة… وخبر حلو 🎉</title>
+<title>لعبة صغيرة… وخبر كبير 🎉👶</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,29 +186,28 @@
     transform:translate(-50%,-50%) scale(.7);
     background:linear-gradient(135deg,#ff6fa5,#f6a93b);
     color:#fff; font-weight:800;
-    font-size:clamp(18px,5vw,26px);
-    padding:18px 32px; border-radius:24px;
+    font-size:clamp(15px,4.2vw,22px);
+    padding:18px 28px; border-radius:24px;
     box-shadow:0 20px 50px rgba(255,111,165,.5);
     z-index:100; opacity:0; pointer-events:none;
     transition:opacity .3s, transform .4s cubic-bezier(.2,1.5,.4,1);
-    font-family:inherit; white-space:nowrap;
-    max-width:90vw; text-align:center;
+    font-family:inherit;
+    max-width:88vw; text-align:center;
+    line-height:1.7;
   }
   .toast.show{ opacity:1; transform:translate(-50%,-50%) scale(1); }
 
-  /* كويز */
-  .quiz-options{
-    display:grid; gap:11px; margin-top:20px; direction:rtl;
-  }
+  .quiz-options{ display:grid; gap:11px; margin-top:20px; direction:rtl; }
   .quiz-btn{
     font-family:inherit;
-    font-size:clamp(14px,4vw,17px); font-weight:700;
-    padding:15px 22px; border-radius:18px;
+    font-size:clamp(13px,3.7vw,16px); font-weight:700;
+    padding:14px 20px; border-radius:18px;
     background:rgba(255,255,255,.9);
     border:2px solid rgba(255,111,165,.28);
     color:#5b4a5c; cursor:pointer;
     transition:all .22s; text-align:right;
     -webkit-tap-highlight-color:transparent;
+    line-height:1.6;
   }
   .quiz-btn:hover{
     border-color:#ff6fa5;
@@ -222,10 +221,9 @@
     animation:pickPop .4s;
   }
   @keyframes pickPop{
-    0%{transform:scale(1);} 50%{transform:scale(1.04);} 100%{transform:scale(1);}
+    0%{transform:scale(1);} 50%{transform:scale(1.03);} 100%{transform:scale(1);}
   }
 
-  /* ============ صناديق المفاجآت ============ */
   .boxes{
     display:flex; justify-content:center;
     gap:clamp(10px,3vw,22px);
@@ -255,41 +253,22 @@
   .box:nth-child(3){ animation-delay:1s; }
   .box:hover{ transform:translateY(-6px) scale(1.04); }
   .box:active{ transform:translateY(-2px) scale(.98); }
-  .box.opened{
-    animation:none;
-    cursor:default;
-    pointer-events:none;
-  }
-  .box .lid,
-  .box .prize{
+  .box.opened{ animation:none; cursor:default; pointer-events:none; }
+  .box .lid, .box .prize{
     position:absolute; inset:0;
     display:grid; place-items:center;
     transition:transform .55s cubic-bezier(.5,0,.4,1.3), opacity .45s;
   }
-  .box .lid{
-    font-size:clamp(40px,11vw,58px);
-    text-shadow:0 4px 8px rgba(0,0,0,.18);
-  }
-  .box .prize{
-    font-size:clamp(38px,10vw,54px);
-    transform:scale(.3) rotate(-25deg);
-    opacity:0;
-  }
-  .box.opened .lid{
-    transform:translateY(-140%) rotate(-25deg);
-    opacity:0;
-  }
-  .box.opened .prize{
-    transform:scale(1) rotate(0);
-    opacity:1;
-  }
+  .box .lid{ font-size:clamp(40px,11vw,58px); text-shadow:0 4px 8px rgba(0,0,0,.18); }
+  .box .prize{ font-size:clamp(38px,10vw,54px); transform:scale(.3) rotate(-25deg); opacity:0; }
+  .box.opened .lid{ transform:translateY(-140%) rotate(-25deg); opacity:0; }
+  .box.opened .prize{ transform:scale(1) rotate(0); opacity:1; }
   @keyframes boxFloat{
     0%,100%{ transform:translateY(0) rotate(-2deg); }
     50%    { transform:translateY(-10px) rotate(2deg); }
   }
   .box.opened::after{
-    content:'';
-    position:absolute; inset:0;
+    content:''; position:absolute; inset:0;
     background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.9), transparent 65%);
     animation:flash .7s ease-out forwards;
     pointer-events:none;
@@ -299,25 +278,15 @@
     100%{ opacity:0; transform:scale(1.6); }
   }
 
-  /* ============ شريط الفرحة ============ */
-  .fill-wrap{
-    width:100%; max-width:400px;
-    margin:22px auto 6px;
-    direction:rtl;
-  }
+  .fill-wrap{ width:100%; max-width:400px; margin:22px auto 6px; direction:rtl; }
   .fill-track{
-    position:relative;
-    height:26px;
+    position:relative; height:26px;
     background:rgba(255,111,165,.14);
-    border-radius:999px;
-    overflow:hidden;
-    box-shadow:
-      inset 0 3px 8px rgba(0,0,0,.08),
-      0 0 0 2px rgba(255,255,255,.7);
+    border-radius:999px; overflow:hidden;
+    box-shadow:inset 0 3px 8px rgba(0,0,0,.08), 0 0 0 2px rgba(255,255,255,.7);
   }
   .fill-bar{
-    height:100%;
-    width:0%;
+    height:100%; width:0%;
     border-radius:999px;
     background:linear-gradient(90deg, #ff6fa5, #f6a93b, #8b7bf7, #66c7f4, #ff6fa5);
     background-size:300% 100%;
@@ -330,23 +299,17 @@
     100%{ background-position:300% 50%; }
   }
   .fill-percent{
-    display:block;
-    margin-top:14px;
+    display:block; margin-top:14px;
     font-size:clamp(18px,5.5vw,26px);
-    font-weight:900;
-    color:#c04a86;
-    font-family:inherit;
+    font-weight:900; color:#c04a86;
   }
   .fill-msg{
-    display:block;
-    margin-top:6px;
+    display:block; margin-top:6px;
     font-size:clamp(12px,3.3vw,14px);
-    font-weight:700;
-    color:#9b8a9d;
-    min-height:20px;
+    font-weight:700; color:#9b8a9d;
+    min-height:20px; line-height:1.7;
   }
 
-  /* ظرف */
   .envelope{
     position:relative; width:min(320px,80vw);
     aspect-ratio:3/2; margin:22px auto 10px;
@@ -366,9 +329,9 @@
     background:linear-gradient(170deg,#fffdf9,#fff6fb);
     border-radius:10px;
     display:grid; place-items:center;
-    padding:14px 18px; text-align:center;
-    font-size:clamp(13px,3.6vw,16px); font-weight:700;
-    line-height:1.9; color:#7a6a7d; z-index:2;
+    padding:14px 16px; text-align:center;
+    font-size:clamp(12px,3.4vw,15px); font-weight:700;
+    line-height:2; color:#7a6a7d; z-index:2;
     box-shadow:0 8px 20px rgba(0,0,0,.08);
     transition:transform .85s cubic-bezier(.2,.85,.3,1) .28s;
   }
@@ -399,10 +362,8 @@
   .envelope.open .env-flap{ transform:rotateX(180deg); }
   .envelope.open .env-letter{ transform:translateY(-64%); }
 
-  /* الشمعة */
   .candle-stage{
-    position:relative;
-    height:clamp(180px,45vw,240px);
+    position:relative; height:clamp(180px,45vw,240px);
     display:grid; place-items:end center;
     margin:14px 0 6px;
   }
@@ -412,10 +373,7 @@
     height:clamp(110px,30vw,150px);
     border-radius:8px;
     background:linear-gradient(180deg,#fff 0%, #ffe1ef 40%, #ffb3d1 100%);
-    box-shadow:
-      inset -6px 0 12px rgba(0,0,0,.08),
-      0 12px 26px rgba(255,111,165,.28);
-    margin-bottom:0;
+    box-shadow:inset -6px 0 12px rgba(0,0,0,.08), 0 12px 26px rgba(255,111,165,.28);
     transition:transform .25s;
     -webkit-tap-highlight-color:transparent;
   }
@@ -438,9 +396,7 @@
     width:22px; height:34px;
     background:radial-gradient(circle at 50% 30%, #fff 0%, #ffe98a 22%, #ffb13a 60%, #ff6b1a 100%);
     border-radius:50% 50% 40% 40% / 60% 60% 40% 40%;
-    box-shadow:
-      0 0 24px rgba(255,180,60,.85),
-      0 0 46px rgba(255,120,30,.55);
+    box-shadow:0 0 24px rgba(255,180,60,.85), 0 0 46px rgba(255,120,30,.55);
     animation:flicker .9s ease-in-out infinite;
     transform-origin:bottom center;
     transition:opacity .4s, transform .4s;
@@ -450,9 +406,7 @@
     25%    { transform:translateX(-52%) scale(1.05) rotate(-2deg); }
     75%    { transform:translateX(-48%) scale(.96) rotate(2deg); }
   }
-  .candle.blown .flame{
-    opacity:0; transform:translateX(-50%) scale(.2);
-  }
+  .candle.blown .flame{ opacity:0; transform:translateX(-50%) scale(.2); }
   .smoke{
     position:absolute; top:-34px; left:50%;
     transform:translateX(-50%);
@@ -462,9 +416,7 @@
     opacity:0; pointer-events:none;
     filter:blur(3px);
   }
-  .candle.blown .smoke{
-    animation:smokeRise 2s ease-out forwards;
-  }
+  .candle.blown .smoke{ animation:smokeRise 2s ease-out forwards; }
   .smoke.s2{ animation-delay:.25s !important; }
   .smoke.s3{ animation-delay:.5s !important; }
   @keyframes smokeRise{
@@ -472,7 +424,6 @@
     100%{ opacity:0;  transform:translate(-50%, -120px) scale(2.6); }
   }
 
-  /* الكشط */
   .scratch-wrap{
     position:relative; width:100%; max-width:420px;
     margin:22px auto 4px; aspect-ratio:5/3;
@@ -483,14 +434,14 @@
   .scratch-reveal{
     position:absolute; inset:0;
     display:grid; place-content:center;
-    gap:4px; text-align:center; padding:14px;
+    gap:6px; text-align:center; padding:14px;
   }
   .sr-small{
     font-size:clamp(13px,3.6vw,17px); font-weight:700; color:var(--muted);
   }
   .sr-big{
     font-family:'Aref Ruqaa', serif; font-weight:700;
-    font-size:clamp(28px,9vw,52px); line-height:1.4;
+    font-size:clamp(20px,6vw,36px); line-height:1.5;
     background:linear-gradient(100deg,#ff6fa5,#f6a93b,#8b7bf7);
     -webkit-background-clip:text; background-clip:text;
     color:transparent;
@@ -504,7 +455,6 @@
   }
   #scratchCanvas.gone{ opacity:0; pointer-events:none; }
 
-  /* العجلة */
   .wheel-wrap{
     position:relative;
     width:clamp(220px,65vw,280px);
@@ -561,27 +511,31 @@
     color:#fff; font-size:20px;
   }
 
-  /* البطاقة النهائية */
   .to{
     font-size:clamp(15px,4.1vw,21px); font-weight:800;
     color:#6b5a6d; margin-bottom:14px;
   }
   .big span{
     display:block; font-size:clamp(14px,3.8vw,18px);
-    font-weight:700; color:#8d7b90; margin-bottom:2px;
+    font-weight:700; color:#8d7b90; margin-bottom:4px;
   }
   .big strong{
     display:block; font-family:'Aref Ruqaa', serif;
-    font-weight:700; font-size:clamp(38px,12vw,74px);
+    font-weight:700; font-size:clamp(32px,10vw,60px);
     line-height:1.35;
     background:linear-gradient(100deg,#ff6fa5 0%,#f6a93b 48%,#8b7bf7 100%);
     -webkit-background-clip:text; background-clip:text;
     color:transparent;
     filter:drop-shadow(0 6px 14px rgba(255,111,165,.24));
   }
+  .subtitle{
+    font-size:clamp(13px,3.6vw,16px);
+    font-weight:700; color:#8d7b90;
+    line-height:2; margin-top:10px; margin-bottom:6px;
+  }
   .emoji-row{
     font-size:clamp(26px,7.5vw,38px); letter-spacing:10px;
-    margin:8px 0 18px;
+    margin:12px 0 18px;
     animation:bounceRow 2.6s ease-in-out infinite;
   }
   @keyframes bounceRow{
@@ -589,13 +543,13 @@
     50%    { transform:translateY(-8px); }
   }
   .msg{
-    font-size:clamp(14px,3.8vw,17px); line-height:2.1;
+    font-size:clamp(14px,3.8vw,17px); line-height:2.2;
     color:#6f6072; font-weight:600;
-    max-width:460px; margin:0 auto;
+    max-width:520px; margin:0 auto;
   }
   .divider{
     display:flex; align-items:center; gap:12px;
-    margin:24px 0 16px;
+    margin:26px 0 18px;
   }
   .divider::before, .divider::after{
     content:''; flex:1; height:1px;
@@ -608,8 +562,134 @@
   }
   .from .name{
     color:#c04a86; font-weight:800;
+    display:inline-block;
     border-bottom:2px dashed rgba(255,111,165,.5);
     padding-bottom:2px;
+    line-height:2;
+  }
+
+  /* ============ شاشات الأدعية ============ */
+  .dua-panel{
+    padding:clamp(26px,6vw,48px) clamp(18px,5vw,42px);
+  }
+  .dua-counter{
+    display:inline-block;
+    font-size:clamp(12px,3.2vw,14px);
+    font-weight:900;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6fa5,#f6a93b);
+    padding:7px 20px;
+    border-radius:999px;
+    margin-bottom:20px;
+    box-shadow:0 6px 14px rgba(255,111,165,.35);
+    letter-spacing:.5px;
+  }
+  .dua-content{
+    background:rgba(255,255,255,.7);
+    border:1.5px solid rgba(255,111,165,.22);
+    border-radius:24px;
+    padding:clamp(20px,5vw,32px) clamp(16px,4.5vw,28px);
+    margin:6px 0 24px;
+    box-shadow:0 8px 24px rgba(180,120,160,.08);
+  }
+  .dua-label{
+    display:inline-block;
+    font-size:clamp(13px,3.5vw,16px);
+    font-weight:900;
+    color:#c04a86;
+    background:linear-gradient(135deg,#ffe1ef,#ffeec9);
+    border:1px solid rgba(255,111,165,.35);
+    padding:6px 18px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .dua-text{
+    font-size:clamp(15px,4.2vw,19px);
+    font-weight:700;
+    color:#5b4a5c;
+    line-height:2.2;
+    margin:0;
+  }
+  .dua-nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:10px;
+    flex-wrap:wrap;
+    direction:rtl;
+  }
+  .dua-nav .btn{
+    flex:1;
+    min-width:120px;
+    margin-top:0;
+  }
+  .dua-nav .btn.ghost{
+    font-size:clamp(13px,3.5vw,15px);
+    padding:14px 20px;
+  }
+  .dua-nav .btn.primary{
+    font-size:clamp(13px,3.5vw,15px);
+    padding:14px 20px;
+  }
+
+  /* شاشة المقدمة الشخصية */
+  .intro-dua-panel{
+    text-align:right;
+  }
+  .intro-dua-panel .dua-title{
+    text-align:center;
+    font-size:clamp(18px,5vw,24px);
+    font-weight:900;
+    color:#c04a86;
+    margin-bottom:20px;
+    line-height:1.8;
+  }
+  .intro-dua-panel .dua-highlight{
+    background:linear-gradient(135deg, rgba(255,225,239,.7), rgba(255,238,201,.7));
+    border:1px solid rgba(255,111,165,.25);
+    border-radius:20px;
+    padding:16px 20px;
+    margin-bottom:18px;
+    font-size:clamp(15px,4.2vw,18px);
+    font-weight:800;
+    color:#b3457a;
+    text-align:center;
+    line-height:2.1;
+  }
+  .intro-dua-panel .dua-paragraph{
+    font-size:clamp(14px,3.8vw,17px);
+    font-weight:600;
+    color:#5b4a5c;
+    line-height:2.2;
+    margin-bottom:16px;
+  }
+  .intro-dua-panel .dua-center{
+    text-align:center;
+  }
+  .intro-dua-panel .dua-big{
+    text-align:center;
+    font-size:clamp(15px,4.2vw,19px);
+    font-weight:900;
+    color:#b3457a;
+    line-height:2.2;
+    padding:16px 18px;
+    background:linear-gradient(135deg, rgba(255,225,239,.6), rgba(230,225,255,.6));
+    border:1.5px dashed rgba(255,111,165,.4);
+    border-radius:18px;
+    margin:18px 0;
+  }
+  .intro-dua-panel .dua-note{
+    text-align:center;
+    font-size:clamp(13px,3.6vw,15px);
+    font-weight:800;
+    color:#8b7bf7;
+    background:rgba(139,123,247,.08);
+    border:1px dashed rgba(139,123,247,.35);
+    border-radius:14px;
+    padding:14px 18px;
+    margin:22px 0;
+    line-height:2;
   }
 
   .screen.active .card > *{ animation:fadeUp .75s cubic-bezier(.2,.8,.3,1) both; }
@@ -629,6 +709,8 @@
   @media (max-width:420px){
     .panel, .card{ border-radius:28px; }
     .emoji-row{ letter-spacing:6px; }
+    .dua-nav{ flex-direction:column; }
+    .dua-nav .btn{ width:100%; }
   }
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
@@ -642,122 +724,125 @@
   <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <main class="stage">
+  <main class="stage" id="stage">
 
-    <!-- ══ 0: تمهيد ══ -->
+    <!-- ══ 0 ══ -->
     <section class="screen active" data-step="0">
       <div class="panel">
-        <span class="badge">🎮 لعبة صغيرة</span>
-        <span class="emoji-big">🎈</span>
-        <h1 class="h1">بدنا نلعب لعبة صغيرة…</h1>
-        <p class="p">٩ مراحل صغيرة وبعدها رح تعرفوا كل شي 😄</p>
-        <button class="btn primary" id="startBtn">يلا نبدأ 👇</button>
-        <p class="hint">اللعبة سهلة وحلوة… بس بدها شوية صبر</p>
+        <span class="badge">🎮 لعبة صغيرة حلوة زيكم</span>
+        <span class="emoji-big">🥹</span>
+        <h1 class="h1">بدنا نلعب معكم لعبة صغيرة…</h1>
+        <p class="p">٩ مراحل بسيطة، وكل مرحلة رح تقرّبكم شوي من خبر حلو مخبّيينه إلكم 💛</p>
+        <button class="btn primary" id="startBtn">يلا نبلّش 👇</button>
+        <p class="hint">اللعبة بدها شوية صبر… بس آخرها فرحة كبيرة إن شاء الله 🤲🏻✨</p>
       </div>
     </section>
 
-    <!-- ══ 1: كويز ١ ══ -->
+    <!-- ══ 1 ══ -->
     <section class="screen" data-step="1">
       <div class="panel">
         <span class="step-tag">سؤال ١ من ٣</span>
-        <h2 class="h2">مين أكتر واحد بيتحمس للأخبار الحلوة؟ 🎉</h2>
-        <p class="p" style="margin-bottom:0">اختاروا الجواب… أي جواب صح 😄</p>
+        <h2 class="h2">مين أكتر ناس بالدنيا قلبهم كبير وبفرحوا من قلوبهم؟ 🥹</h2>
+        <p class="p" style="margin-bottom:0">اختاروا… وكل جواب إله محبة خاصة ❤️</p>
         <div class="quiz-options">
-          <button class="quiz-btn" data-feedback="أكيد أمي! 💖">أمي 💖</button>
-          <button class="quiz-btn" data-feedback="أبوي كمان بيتحمس! 💙">أبوي 💙</button>
-          <button class="quiz-btn" data-feedback="خواتك ما بيتفوتوا! 🌸">خواتي 🌸</button>
-          <button class="quiz-btn" data-feedback="صح! كلنا سوا! 🥳">كلنا 🥳</button>
+          <button class="quiz-btn" data-feedback="أكيد أمي… رضاها بالدنيا كلها ❤️">أمي 💖</button>
+          <button class="quiz-btn" data-feedback="أبوي… سندي ودعواته دايمًا معي 🤲🏻">أبوي 💙</button>
+          <button class="quiz-btn" data-feedback="خواتي الحلوين… فرحتهم غير 🥰">خواتي 🌸</button>
+          <button class="quiz-btn" data-feedback="إخواني الغاليين… فرحتهم بتجنّن ❤️">إخواني 💙</button>
+          <button class="quiz-btn" data-feedback="هاي الإجابة الصح… لأن فرحتنا ما بتحلى إلا فيكم ❤️">كلكم 🥹</button>
         </div>
       </div>
     </section>
 
-    <!-- ══ 2: كويز ٢ ══ -->
+    <!-- ══ 2 ══ -->
     <section class="screen" data-step="2">
       <div class="panel">
         <span class="step-tag">سؤال ٢ من ٣</span>
-        <h2 class="h2">شو رح نعمل أول ما نوصل؟ 🤔</h2>
-        <p class="p" style="margin-bottom:0">توقعوا…</p>
+        <h2 class="h2">لو إجى خبر يفرّح القلب… شو أول إشي رح نعمل؟ 🥹</h2>
+        <p class="p" style="margin-bottom:0">توقّعوا شوي… يمكن قربتوا تعرفوا 👀</p>
         <div class="quiz-options">
-          <button class="quiz-btn" data-feedback="أكيد! 😂">نضحك كتير 😂</button>
-          <button class="quiz-btn" data-feedback="هههه صار معنا 🥹">نبكي من الفرح 🥹</button>
-          <button class="quiz-btn" data-feedback="أحلى شي! 🤗">نحضن بعض 🤗</button>
-          <button class="quiz-btn" data-feedback="كلهم سوا! 🥰">كلهم سوا 🥰</button>
+          <button class="quiz-btn" data-feedback="يا رب تكون ضحكة من القلب، وما في زيّها يا أحلى ضحكة 🤍">نضحك من الفرحة 😂</button>
+          <button class="quiz-btn" data-feedback="يمكن الدموع تسبق الكلام 🥹">نبكي من الفرح 🥹</button>
+          <button class="quiz-btn" data-feedback="هاي أحلى وأغلاهم 🤗❤️">نحضن بعض 🤗</button>
+          <button class="quiz-btn" data-feedback="إن شاء الله ضحك ودموع وحضن ودعوات 🤲🏻">كلهم سوا 🥰</button>
         </div>
       </div>
     </section>
 
-    <!-- ══ 3: كويز ٣ ══ -->
+    <!-- ══ 3 ══ -->
     <section class="screen" data-step="3">
       <div class="panel">
         <span class="step-tag">سؤال ٣ من ٣</span>
-        <h2 class="h2">شو أحلى لون للفرحة؟ 🎨</h2>
-        <p class="p" style="margin-bottom:0">كل الألوان حلوة… بس اختاروا</p>
+        <h2 class="h2">شو لون الفرحة اللي جاييتكم؟ 🎨👀</h2>
+        <p class="p" style="margin-bottom:0">كل الألوان حلوة… بس اختاروا اللون اللي بتحسّوه قريب من قلبكم</p>
         <div class="quiz-options">
-          <button class="quiz-btn" data-feedback="وردي 🩷 حلو كتير!">وردي 🩷</button>
-          <button class="quiz-btn" data-feedback="ذهبي ✨ فخم!">ذهبي ✨</button>
-          <button class="quiz-btn" data-feedback="سماوي 💙 هادي!">سماوي 💙</button>
-          <button class="quiz-btn" data-feedback="أخضر 🍀 حلو!">أخضر 🍀</button>
+          <button class="quiz-btn" data-feedback="هو وجودكم بحياتنا 👀🩷">وردي 🩷</button>
+          <button class="quiz-btn" data-feedback="زي السما اللي جامعة ضحكتنا 👀💙">أزرق 💙</button>
+          <button class="quiz-btn" data-feedback="يا أصفر شاغلكككك 💛😂">أصفر 💛</button>
+          <button class="quiz-btn" data-feedback="لأن الفرحة الجاية أكبر من لون واحد 🥹">كل الألوان 🌈</button>
         </div>
       </div>
     </section>
 
-    <!-- ══ 4: صناديق المفاجآت (بدل البالونات) ══ -->
+    <!-- ══ 4 ══ -->
     <section class="screen" data-step="4">
       <div class="panel">
         <span class="step-tag">مرحلة ١ من ٦</span>
-        <h2 class="h2">افتحوا الصناديق الثلاثة 🎁</h2>
-        <p class="p" style="margin-bottom:6px">كل صندوق فيه لمحة صغيرة… بس ما بتعرفوا شو الخبر بعد</p>
+        <h2 class="h2">افتحوا الصناديق الثلاثة… في شي مخبّى إلكم 🎁</h2>
+        <p class="p" style="margin-bottom:6px">كل صندوق رح يعطيكم تلميحة صغيرة… بس الخبر الكبير لسا مخبّى 🤫</p>
 
         <div class="boxes" id="boxes">
-          <button class="box" data-prize="🌟" data-msg="في شي حلو كتير جاي…" style="--c1:#ffb3d1;--c2:#ff5f9e" aria-label="افتحوا الصندوق ١">
+          <button class="box" data-prize="👶" data-msg="في فرحة صغيرة عالطريق… 👶" style="--c1:#ffb3d1;--c2:#ff5f9e" aria-label="افتحوا الصندوق ١">
             <span class="lid">🎁</span>
-            <span class="prize">🌟</span>
+            <span class="prize">👶</span>
           </button>
-          <button class="box" data-prize="💫" data-msg="بس لسا ما وصلنا للنهاية…" style="--c1:#b8c6ff;--c2:#6f7bf7" aria-label="افتحوا الصندوق ٢">
+          <button class="box" data-prize="👀" data-msg="في حدا بحبكم وبدو رضاكم… إله علاقة بالخبر 👀😂" style="--c1:#b8c6ff;--c2:#6f7bf7" aria-label="افتحوا الصندوق ٢">
             <span class="lid">🎁</span>
-            <span class="prize">💫</span>
+            <span class="prize">👀</span>
           </button>
-          <button class="box" data-prize="✨" data-msg="قربنا… خلّوا صبركم!" style="--c1:#ffe0a3;--c2:#f0a83c" aria-label="افتحوا الصندوق ٣">
+          <button class="box" data-prize="🥹" data-msg="قربتوا تعرفوا… بس اصبروا شوي 🥹" style="--c1:#ffe0a3;--c2:#f0a83c" aria-label="افتحوا الصندوق ٣">
             <span class="lid">🎁</span>
-            <span class="prize">✨</span>
+            <span class="prize">🥹</span>
           </button>
         </div>
 
-        <p class="hint">افتحوا الثلاثة عشان تكمّلوا</p>
+        <p class="hint">افتحوا الثلاثة عشان تعرفوا التلميحات كلها 🤍</p>
         <button class="btn primary hidden" id="next4">كمّلوا 👈</button>
       </div>
     </section>
 
-    <!-- ══ 5: شريط الفرحة (بدل ترتيب الحروف) ══ -->
+    <!-- ══ 5 ══ -->
     <section class="screen" data-step="5">
       <div class="panel">
         <span class="step-tag">مرحلة ٢ من ٦</span>
-        <h2 class="h2">املأوا شريط الفرحة 🎉</h2>
-        <p class="p" style="margin-bottom:6px">اضغطوا الزر… كل ضغطة بتزيد الفرحة شوي</p>
+        <h2 class="h2">كبّروا الفرحة معنا 🎉</h2>
+        <p class="p" style="margin-bottom:6px">كل ضغطة بتقرّبنا أكتر من الخبر اللي مستنيكم 💛</p>
 
         <div class="fill-wrap">
           <div class="fill-track">
             <div class="fill-bar" id="fillBar"></div>
           </div>
           <span class="fill-percent" id="fillPercent">0%</span>
-          <span class="fill-msg" id="fillMsg">يلا ابدأوا 👇</span>
+          <span class="fill-msg" id="fillMsg">يلا نبلّش… ولسا في كتير حلو جاي 👇</span>
         </div>
 
-        <button class="btn primary" id="fillBtn" style="margin-top:12px">اضغطوا هون 💛</button>
+        <button class="btn primary" id="fillBtn" style="margin-top:12px">كبّروا الفرحة هون 💛</button>
         <button class="btn primary hidden" id="next5" style="margin-top:12px">كمّلوا 👈</button>
       </div>
     </section>
 
-    <!-- ══ 6: الظرف ══ -->
+    <!-- ══ 6 ══ -->
     <section class="screen" data-step="6">
       <div class="panel">
         <span class="step-tag">مرحلة ٣ من ٦</span>
         <h2 class="h2">افتحوا الظرف 💌</h2>
-        <p class="p" style="margin-bottom:6px">في شي جوّا… بس بدو شوية صبر</p>
+        <p class="p" style="margin-bottom:6px">في رسالة إلكم… بس الخبر الكبير لسا بدو شوية صبر 🤍</p>
         <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="افتحوا الظرف">
           <div class="env-back"></div>
           <div class="env-letter">
-            <span>الخبر جوّا هالظرف…<br>بس لسا بدو شوية صبر 💛</span>
+            <span>يا أحلى أهل بالدنيا…<br>
+            في خبر جايب معه فرحة كبيرة…<br>
+            وخلوها ببالكم: في دعوة حلوة بدنا إياكم تدعوها معنا 🤲🏻💛</span>
           </div>
           <div class="env-flap"><span class="seal">❤</span></div>
           <div class="env-front"></div>
@@ -766,12 +851,12 @@
       </div>
     </section>
 
-    <!-- ══ 7: الشمعة ══ -->
+    <!-- ══ 7 ══ -->
     <section class="screen" data-step="7">
       <div class="panel">
         <span class="step-tag">مرحلة ٤ من ٦</span>
         <h2 class="h2">اطفوا الشمعة 🎂</h2>
-        <p class="p" style="margin-bottom:6px">تمنّوا أمنية… واضغطوا على الشمعة</p>
+        <p class="p" style="margin-bottom:6px">تمنّوا أمنية من قلبكم… وادعوا ربنا يتمم علينا بالخير 🤲🏻✨</p>
         <div class="candle-stage">
           <div class="candle" id="candle" role="button" tabindex="0" aria-label="اطفوا الشمعة">
             <span class="wick"></span>
@@ -785,30 +870,30 @@
       </div>
     </section>
 
-    <!-- ══ 8: الكشط ══ -->
+    <!-- ══ 8 ══ -->
     <section class="screen" data-step="8">
       <div class="panel">
         <span class="step-tag">مرحلة ٥ من ٦</span>
         <h2 class="h2">اكشطوا البطاقة بإصبعكم 🪙</h2>
-        <p class="p" style="margin-bottom:6px">مرّروا إصبعكم فوق البطاقة… وشوفوا شو مستخبّي</p>
+        <p class="p" style="margin-bottom:6px">مرّروا إصبعكم شوي شوي… لأن في مفاجأة مخبّاية إلكم 🥹</p>
         <div class="scratch-wrap">
           <div class="scratch-reveal">
-            <span class="sr-small">رح تصيروا</span>
-            <span class="sr-big">جدّو وتيتا</span>
+            <span class="sr-small">رح تصيروا أحلى وأفخم…</span>
+            <span class="sr-big">جَدّو وتيتا… وعَمّه وخاله 🥹👶💛</span>
           </div>
           <canvas id="scratchCanvas"></canvas>
         </div>
-        <button class="btn ghost" id="revealNow">مش قادرين نكشط؟ اضغطوا هون</button>
-        <button class="btn primary hidden" id="next8">كمّلوا 👈</button>
+        <button class="btn ghost" id="revealNow">مش قادرين تكشطوا؟ اضغطوا هون ❤️</button>
+        <button class="btn primary hidden" id="next8">خذوا نفس… ولسا في مرحلة أخيرة 👈</button>
       </div>
     </section>
 
-    <!-- ══ 9: عجلة الحظ ══ -->
+    <!-- ══ 9 ══ -->
     <section class="screen" data-step="9">
       <div class="panel">
         <span class="step-tag">مرحلة ٦ من ٦</span>
-        <h2 class="h2">دوّروا العجلة 🎡</h2>
-        <p class="p" style="margin-bottom:6px">وين رح توقف…؟ اضغطوا على العجلة وشوفوا</p>
+        <h2 class="h2">دوّروا عجلة الفرح 🎡</h2>
+        <p class="p" style="margin-bottom:6px">هسا بدنا نعرف… شو المفاجأة اللي مخبّيتها الأيام الجاية؟ 👶</p>
         <div class="wheel-wrap">
           <div class="wheel-pointer"></div>
           <div class="wheel" id="wheel">
@@ -828,21 +913,107 @@
     <section class="screen" data-step="10">
       <div class="card">
         <div class="badge">🎉 خبر حلو كتير 🎉</div>
-        <h2 class="to">لأحلى أب وأم وأخوات 💛</h2>
+
+        <h2 class="to">لأحلى جدّو وتيتا بالدنيا 💛</h2>
+
         <div class="big">
-          <span>رح تصيروا</span>
-          <strong>جدّو وتيتا</strong>
+          <span>أنا جاي…</span>
+          <strong>حفيدكم الصغير…</strong>
         </div>
-        <div class="emoji-row">👶 🍼 ✨</div>
-        <p class="msg">
-          قلبنا مليان فرح، ومنستنى هالضيف الصغير بفارغ الصبر.<br>
-          الله يتمم على خير ويجعله من الصالحين 🤍
+
+        <p class="subtitle">
+          عشان أكسب رضاكم خاوااا هاا 😂🥹👶<br>
+          خواته اللي ما يرضى عليّ … هاااا؟ 😌😂
         </p>
-        <div class="divider"><span>💛</span></div>
-        <p class="from">من: <span class="name">[اكتب اسمك هون]</span></p>
-        <button class="btn ghost" id="againBtn" style="margin-top:22px">🔁 العبوا اللعبة مرة تانية</button>
+
+        <div class="emoji-row">👶 🍼 🤍 ✨</div>
+
+        <p class="msg">
+          أنا لسا صغير كتير… ويمكن ما بتعرفوني لسا،<br>
+          بس حبيت أخبركم إني بالطريق لعندكم 🥹👶<br><br>
+
+          وأول إشي بدي إياه منكم… دعوة حلوة من قلبكم 🤲🏻<br><br>
+
+          ادعولي ربنا يحفظني ويتمم حملي على خير،<br>
+          ويجعلني قرّة عين لماما وبابا،<br>
+          ويكتبلي عمر طويل وصحة وعافية،<br>
+          وأكبر وأطلع زيكم وأكون من أحلى الناس اللي بحبهم ❤️<br><br>
+
+          وأنا من هسا مشتاق أشوفكم…<br>
+          وأشوف ضحكتكم…<br>
+          وأقعد بحضنكم…<br>
+          وتشوفوني هطووووول 🥹😂👶❤️<br><br>
+
+          يا أعسل عسليات بالدنيا…<br>
+          استنوني 🤍
+        </p>
+
+        <div class="divider"><span>🤍</span></div>
+
+        <p class="from">من: <span class="name">ولادكم اللي بحبوكم… عمر وملاك 🥹❤️</span></p>
+
+        <button class="btn primary" id="toPrayersBtn" style="margin-top:24px">🤲🏻 يلا نقرا الأدعية مع بعض</button>
       </div>
     </section>
+
+    <!-- ══ 11: المقدمة الشخصية قبل الأدعية ══ -->
+    <section class="screen" data-step="11">
+      <div class="panel intro-dua-panel">
+        <h2 class="dua-title">يا أحلى جدّو وتيتا بالعالم… 🥹🤍</h2>
+
+        <p class="dua-highlight">
+          قبل ما أشوفكم وتشوفوني،<br>
+          بدي منكم أول هدية إلي…<br>
+          دعوة من قلبكم. 🤲🏻
+        </p>
+
+        <p class="dua-paragraph">
+          ادعولي يا رب يحفظني وأنا لسا بأول طريقي،<br>
+          ويتمم حملي على خير،<br>
+          ويكتبلي الصحة والعافية،<br>
+          ويجعلني كامل الخَلق والخُلق،<br>
+          وقرّة عين لماما وبابا،<br>
+          وفرحة كبيرة تدخل على قلب جدّو وتيتا وكل اللي بحبوني.
+        </p>
+
+        <p class="dua-paragraph">
+          يا رب اجعلني من عبادك الصالحين،<br>
+          ومن أهل القرآن والخير،<br>
+          وارزقني قلبًا طيبًا، ونفسًا جميلة،<br>
+          واجعل عمري طويلًا مباركًا،<br>
+          واجعلني سببًا للخير وين ما كنت.<br>
+          ورضاكم
+        </p>
+
+        <p class="dua-paragraph">
+          يا رب لا تحرم أهلي فرحتي،<br>
+          ولا تحرمني منهم،<br>
+          واجمعني فيهم على خير،<br>
+          واكتبلي معهم أجمل العمر وأحلى الذكريات. 🤍
+        </p>
+
+        <p class="dua-big">
+          وأهم إشي…<br>
+          يا رب خلّي أول حضن إلي يكون بحضن جدّو وتيتا 🥹👶🏻🤍
+        </p>
+
+        <p class="dua-paragraph dua-center">
+          استنوني…<br>
+          أنا جاي عالطريق ❤️
+        </p>
+
+        <p class="dua-note">
+          ادعولي هاي الادعيه و لا تحكو حدا عني غير بعد شهر
+        </p>
+
+        <div class="dua-nav">
+          <button class="btn ghost" data-target="10">→ رجوع للخبر</button>
+          <button class="btn primary" data-target="12">يلا نبلّش الأدعية ←</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- شاشات الأدعية رح تنضاف هون بالجافاسكربت -->
 
   </main>
 
@@ -854,10 +1025,107 @@
   <button class="skip" id="skipBtn">تخطي ⏭</button>
 
 <script>
+/* ══════════════════════════════════════════
+   الأدعية — كل دعاء على شاشة لحاله
+   ══════════════════════════════════════════ */
+const DUAS = [
+  { label:'دعاء ١', text:'اللهم إنّا استودعناك روحًا صغيرة لم نرها بعد، فاحفظها لنا بحفظك، وأتممها علينا بخير، واجعلها تامة الخَلق والخُلق، سليمةً معافاة، واجعل قدومها قدوم خير وبركة وفرح على بيتنا جميعًا. 🤲🏻🤍' },
+  { label:'دعاء ٢', text:'يا رب، يا من وهبتنا هذه النعمة قبل أن نراها، نسألك أن تحفظها في بطن أمها، وأن تتمم حملها وولادتها على خير، وأن تكتب لها عمرًا طويلًا في طاعتك، وقلبًا نقيًا، ونفسًا طيبة، وحياةً مليئة بالبركة. 🤍' },
+  { label:'دعاء ٣', text:'اللهم اجعل هذا الطفل قرة عينٍ لأمه وأبيه، وفرحةً لقلب جدّه وجدّته، واجعل قدومه بداية أيام أجمل، واجمعنا به على الخير والمحبة، وارزقه من الدنيا أجملها، ومن الآخرة أكرمها. 🤲🏻✨' },
+  { label:'دعاء ٤', text:'يا رب لا ترينا فيه بأسًا يبكينا، ولا وجعًا يؤذينا، واحفظه لنا من كل شر، وألبسه ثوب الصحة والعافية، واكتب له في كل خطوة من عمره لطفًا منك وبركة. 🤍' },
+  { label:'دعاء ٥', text:'🤲🏻 اللهم إنّا استودعناك هذا الجنين، فاحفظه بحفظك، وأتمم خلقه وخَلقه، وأتمم حمله وولادته على خير، واجعله سليمًا معافى يا رب العالمين.' },
+  { label:'دعاء ٦', text:'🤍 اللهم اجعله قرة عينٍ لأبويه، وفرحةً لجدّه وجدّته، وبارك لنا فيه، وأنبته نباتًا حسنًا، واجعله من عبادك الصالحين.' },
+  { label:'دعاء ٧', text:'🕊️ اللهم احفظه من كل سوء، ومن كل مرض، ومن كل شر، وألبسه ثوب الصحة والعافية، واكتب له في كل خطوة من عمره لطفًا وبركة.' },
+  { label:'دعاء ٨', text:'🌿 اللهم ارزقه قلبًا طيبًا، ونفسًا مطمئنة، وخُلقًا حسنًا، واجعله مباركًا أينما كان، نافعًا لنفسه وأهله ودينه ودنياه.' },
+  { label:'دعاء ٩', text:'✨ اللهم اجعل قدومه قدوم خير وبركة، واجعل معه رزقًا واسعًا وفرحًا لا ينقطع، واجعل وجوده سببًا لجمع القلوب وزيادة المحبة بيننا.' },
+  { label:'دعاء ١٠', text:'🥹 يا رب لا ترينا فيه بأسًا يبكينا، ولا مرضًا يؤلمنا، واحفظه لنا من بين يديه ومن خلفه وعن يمينه وعن شماله ومن فوقه، ونعوذ بعظمتك أن يُغتال من تحته.' },
+  { label:'دعاء ١١', text:'🤲🏻 اللهم ارزقه طول العمر في طاعتك، وحسن العمل، وصلاح القلب، وبر الوالدين، واجعل له شأنًا طيبًا في الدنيا والآخرة.' },
+  { label:'دعاء ١٢', text:'💛 اللهم اجعله ابنًا بارًا، ورفيقًا صالحًا، وقلبًا رحيمًا، ووجهًا يحمل الخير أينما حلّ، واجعلنا له أهلًا صالحين وأعنّا على تربيته كما تحب وترضى.' },
+  { label:'دعاء ١٣', text:'🌙 اللهم اجعله من أهل القرآن، ومن أهل الصلاة، ومن أهل الخير، وارزقه العلم النافع والقلب السليم والعمل الصالح.' },
+  { label:'دعاء ١٤', text:'🤍 يا رب احفظه في بطن أمه، واحفظ أمه له، وأحطهما بعنايتك ورحمتك، وأخرجه إلى الدنيا سالمًا معافى، واجعل يوم لقائنا به من أجمل أيام عمرنا.' },
+  { label:'دعاء ١٥', text:'🌸 اللهم كما بشّرتنا به قبل أن نراه، فأتمم علينا بشارتك، واجعل فرحتنا به كاملة، وارزقه من الخير فوق ما نتمنى ونسأل.' },
+  { label:'دعاء ١٦', text:'🥹 يا رب اجعل جدّه وجدّته يشوفوه بأتم صحة وعافية، ويشيلوه بين إيديهم، ويفرحوا فيه، وتقرّ عيونهم فيه، وتكتب بينهم وبينه عمرًا طويلًا مليان محبة وذكريات حلوة.' }
+];
+
+/* ═══ توليد شاشات الأدعية ═══ */
+(function generateDuaScreens(){
+  const stage = document.getElementById('stage');
+  const total = DUAS.length;
+
+  DUAS.forEach((dua, i) => {
+    const stepNum = 12 + i;
+    const isFirst = i === 0;
+    const isLast  = i === total - 1;
+
+    const section = document.createElement('section');
+    section.className = 'screen';
+    section.dataset.step = stepNum;
+
+    let navHTML = `<div class="dua-nav">`;
+    if(!isFirst){
+      navHTML += `<button class="btn ghost" data-target="${stepNum - 1}">→ السابق</button>`;
+    } else {
+      navHTML += `<button class="btn ghost" data-target="11">→ رجوع للمقدمة</button>`;
+    }
+    if(!isLast){
+      navHTML += `<button class="btn primary" data-target="${stepNum + 1}">التالي ←</button>`;
+    } else {
+      navHTML += `<button class="btn primary" data-target="28">خلصنا 🤍</button>`;
+    }
+    navHTML += `</div>`;
+
+    section.innerHTML = `
+      <div class="panel dua-panel">
+        <span class="dua-counter">دعاء ${i+1} من ${total}</span>
+        <div class="dua-content">
+          <span class="dua-label">${dua.label}</span>
+          <p class="dua-text">${dua.text}</p>
+        </div>
+        ${navHTML}
+      </div>
+    `;
+
+    stage.appendChild(section);
+  });
+
+  /* شاشة النهاية (28) */
+  const endSection = document.createElement('section');
+  endSection.className = 'screen';
+  endSection.dataset.step = 28;
+  endSection.innerHTML = `
+    <div class="card">
+      <div class="badge">🤍 خلصنا</div>
+      <span class="emoji-big">🥹👶🤍</span>
+      <h1 class="h1">يا رب يتقبل منا ومنكم 🤲🏻</h1>
+      <p class="msg" style="margin-top:10px;">
+        شكراً إنكم دعيتوا معي…<br>
+        أنا لسا صغير، بس حاسس بدعواتكم من هلق 🤍<br><br>
+        استنوني… أنا جاي عالطريق ❤️
+      </p>
+      <div class="divider"><span>💛</span></div>
+      <p class="from">من: <span class="name">حفيدكم الصغير… لسا بالطريق 🥹👶</span></p>
+      <div class="dua-nav" style="margin-top:24px;">
+        <button class="btn ghost" data-target="27">→ رجوع لآخر دعاء</button>
+        <button class="btn primary" data-target="10">🔄 رجوع للخبر</button>
+      </div>
+      <button class="btn ghost" id="againBtn" style="margin-top:14px">🔁 العبوا اللعبة من الأول</button>
+    </div>
+  `;
+  stage.appendChild(endSection);
+
+  /* أزرار التنقل بين الأدعية */
+  stage.querySelectorAll('.dua-nav [data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = Number(btn.dataset.target);
+      showStep(target);
+    });
+  });
+})();
+
 /* ═══ خلفية ═══ */
 (function createHearts(){
   const box = document.getElementById('bgHearts');
-  const glyphs = ['💛','🤍','💗','✨','🍼','👶','💫','🎈','🎉'];
+  const glyphs = ['💛','🤍','💗','✨','🍼','👶','💫','🎈','🎉','🤲🏻'];
   for(let i = 0; i < 20; i++){
     const h = document.createElement('span');
     h.className = 'bg-heart';
@@ -900,7 +1168,7 @@ function burstConfetti(count){
 /* ═══ توست ═══ */
 const toastEl = document.getElementById('toast');
 let toastTimer = null;
-function showToast(msg, duration = 900){
+function showToast(msg, duration = 1400){
   clearTimeout(toastTimer);
   toastEl.textContent = msg;
   toastEl.classList.add('show');
@@ -918,6 +1186,7 @@ function showStep(n){
   currentStep = n;
   screens.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));
 
+  // شريط التقدم للألعاب فقط (1-9)
   progressEl.classList.toggle('show', n >= 1 && n <= 9);
   dots.forEach((d, i) => d.classList.toggle('on', i < n - 1));
   skipBtn.classList.toggle('show', n >= 1 && n <= 9);
@@ -935,6 +1204,9 @@ function showStep(n){
 document.getElementById('startBtn').addEventListener('click', () => showStep(1));
 skipBtn.addEventListener('click', () => showStep(10));
 
+/* زر "يلا نقرا الأدعية" من الخطوة 10 */
+document.getElementById('toPrayersBtn').addEventListener('click', () => showStep(11));
+
 /* ═══ كويزات ═══ */
 document.querySelectorAll('.quiz-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -943,16 +1215,16 @@ document.querySelectorAll('.quiz-btn').forEach(btn => {
     parent.dataset.done = '1';
     btn.classList.add('picked');
     try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
-    showToast(btn.dataset.feedback || 'تمام! 💛', 850);
+    showToast(btn.dataset.feedback || 'تمام! 💛', 1400);
     burstConfetti(35);
     setTimeout(() => {
       parent.dataset.done = '0';
       showStep(currentStep + 1);
-    }, 900);
+    }, 1450);
   });
 });
 
-/* ═══ صناديق المفاجآت (الخطوة 4) ═══ */
+/* ═══ صناديق ═══ */
 const boxEls = document.querySelectorAll('.box');
 const next4  = document.getElementById('next4');
 let openedBoxes = 0;
@@ -963,22 +1235,20 @@ boxEls.forEach(box => {
     box.classList.add('opened');
     try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
     burstConfetti(25);
-
     const msg = box.dataset.msg || 'شي حلو 💛';
-    showToast(msg, 950);
-
+    showToast(msg, 1500);
     openedBoxes++;
     if(openedBoxes === boxEls.length){
       setTimeout(() => {
         next4.classList.remove('hidden');
-        showToast('جهزوا حالكم للمرحلة الجاية… 👀', 1000);
+        showToast('حاسّين قلبكم بلّش يشك؟ 👀 جهزوا حالكم…', 1500);
       }, 500);
     }
   });
 });
 next4.addEventListener('click', () => showStep(5));
 
-/* ═══ شريط الفرحة (الخطوة 5) ═══ */
+/* ═══ شريط الفرحة ═══ */
 const fillBar     = document.getElementById('fillBar');
 const fillPercent = document.getElementById('fillPercent');
 const fillMsg     = document.getElementById('fillMsg');
@@ -986,18 +1256,18 @@ const fillBtn     = document.getElementById('fillBtn');
 const next5       = document.getElementById('next5');
 
 const FILL_MESSAGES = [
-  'يلا ابدأوا 👇',           // 0
-  'شوي… شوي… 🩷',             // 1
-  'عم نتقدم! 💛',              // 2
-  'الفرحة عم تكبر ✨',          // 3
-  'نص الطريق! 🎉',              // 4
-  'قربنا كتير… 💫',            // 5
-  'لسا شوي! 🌟',                // 6
-  'تقريباً خلصنا 🥳',          // 7
-  'خلصنا! جهزوا حالكم 🎊'       // 8 (100%)
+  'يلا نبلّش… ولسا في كتير حلو جاي 👇',
+  'شوي شوي… زي الفرحة لما تبدأ تكبر 🩷',
+  'عم نقرب… 💛',
+  'في شي حلو عم يكبر ✨',
+  'نص الطريق… ولسا المفاجأة مخبّاية 🎉',
+  'قربنا كتير… 🥹',
+  'حاسّين فيها؟ 🌟',
+  'تقريبًا وصلنا… 🤍',
+  'خلصنا! هسا صار لازم تجهزوا قلوبكم 🎊'
 ];
 
-let fillLevel = 0;              // 0..8
+let fillLevel = 0;
 const FILL_TOTAL = 8;
 
 function updateFill(){
@@ -1005,7 +1275,6 @@ function updateFill(){
   fillBar.style.width = pct + '%';
   fillPercent.textContent = pct + '%';
   fillMsg.textContent = FILL_MESSAGES[fillLevel] || '';
-
   if(fillLevel >= FILL_TOTAL){
     fillBtn.classList.add('hidden');
     next5.classList.remove('hidden');
@@ -1013,7 +1282,6 @@ function updateFill(){
     try{ if(navigator.vibrate) navigator.vibrate([30,60,30]); }catch(e){}
   }
 }
-
 fillBtn.addEventListener('click', () => {
   if(fillLevel >= FILL_TOTAL) return;
   fillLevel++;
@@ -1023,10 +1291,9 @@ fillBtn.addEventListener('click', () => {
 });
 next5.addEventListener('click', () => showStep(6));
 
-/* ═══ الظرف (الخطوة 6) ═══ */
+/* ═══ ظرف ═══ */
 const envelope = document.getElementById('envelope');
 const next6    = document.getElementById('next6');
-
 function openEnvelope(){
   if(envelope.classList.contains('open')) return;
   envelope.classList.add('open');
@@ -1039,19 +1306,18 @@ envelope.addEventListener('keydown', e => {
 });
 next6.addEventListener('click', () => showStep(7));
 
-/* ═══ الشمعة (الخطوة 7) ═══ */
+/* ═══ شمعة ═══ */
 const candle = document.getElementById('candle');
 const next7  = document.getElementById('next7');
 let candleBlown = false;
-
 function blowCandle(){
   if(candleBlown) return;
   candleBlown = true;
   candle.classList.add('blown');
   try{ if(navigator.vibrate) navigator.vibrate(35); }catch(e){}
   burstConfetti(40);
-  showToast('تمنّيتوا؟ 🌟', 900);
-  setTimeout(() => next7.classList.remove('hidden'), 800);
+  showToast('تمنّيتوا؟ 🌟 إن شاء الله ربنا يسمعها ويكتب لنا ولكم أجمل الأيام 🤍', 1600);
+  setTimeout(() => next7.classList.remove('hidden'), 900);
 }
 candle.addEventListener('click', blowCandle);
 candle.addEventListener('keydown', e => {
@@ -1059,7 +1325,7 @@ candle.addEventListener('keydown', e => {
 });
 next7.addEventListener('click', () => showStep(8));
 
-/* ═══ الكشط (الخطوة 8) ═══ */
+/* ═══ كشط ═══ */
 const scratchCanvas = document.getElementById('scratchCanvas');
 const next8         = document.getElementById('next8');
 const revealNowBtn  = document.getElementById('revealNow');
@@ -1094,7 +1360,6 @@ function setupScratch(){
     const r = Math.random() * 1.8 + 0.4;
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
   }
-
   ctx.fillStyle = 'rgba(255,255,255,.92)';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.font = '800 17px Cairo, sans-serif';
@@ -1158,7 +1423,7 @@ revealNowBtn.addEventListener('click', () => {
 });
 next8.addEventListener('click', () => showStep(9));
 
-/* ═══ العجلة (الخطوة 9) ═══ */
+/* ═══ عجلة ═══ */
 const wheel   = document.getElementById('wheel');
 const spinBtn = document.getElementById('spinBtn');
 const next9   = document.getElementById('next9');
@@ -1175,28 +1440,25 @@ function spinWheel(){
 
   setTimeout(() => {
     burstConfetti(80);
-    showToast('يا رب يتمم على خير 🤍', 1200);
-    setTimeout(() => next9.classList.remove('hidden'), 900);
+    showToast('يا رب يتمم علينا بالخير، ويرزقنا طفل سليم معافى، ويجعله من الصالحين، ويقرّ عيونكم فيه 🤲🏻🤍', 2200);
+    setTimeout(() => next9.classList.remove('hidden'), 1400);
   }, 4700);
 }
 spinBtn.addEventListener('click', spinWheel);
 wheel.addEventListener('click', spinWheel);
 next9.addEventListener('click', () => showStep(10));
 
-/* ═══ إعادة ═══ */
+/* ═══ إعادة اللعبة ═══ */
 document.getElementById('againBtn').addEventListener('click', () => {
-  // كويزات
   document.querySelectorAll('.quiz-options').forEach(p => {
     p.dataset.done = '0';
     p.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('picked'));
   });
 
-  // صناديق
   openedBoxes = 0;
   boxEls.forEach(b => b.classList.remove('opened'));
   next4.classList.add('hidden');
 
-  // شريط الفرحة
   fillLevel = 0;
   fillBar.style.width = '0%';
   fillPercent.textContent = '0%';
@@ -1204,16 +1466,13 @@ document.getElementById('againBtn').addEventListener('click', () => {
   fillBtn.classList.remove('hidden');
   next5.classList.add('hidden');
 
-  // ظرف
   envelope.classList.remove('open');
   next6.classList.add('hidden');
 
-  // شمعة
   candleBlown = false;
   candle.classList.remove('blown');
   next7.classList.add('hidden');
 
-  // كشط
   scratchReady = false;
   scratchDone  = false;
   scratchCanvas.classList.remove('gone');
@@ -1223,7 +1482,6 @@ document.getElementById('againBtn').addEventListener('click', () => {
   ctx.globalCompositeOperation = 'source-over';
   next8.classList.add('hidden');
 
-  // عجلة
   wheelSpun = false;
   totalRotation = 0;
   wheel.style.transition = 'none';
