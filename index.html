@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#fffaf5" />
-<title>خبر حلو 🎉</title>
+<title>لعبة طويلة… وخبر حلو 🎉</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,17 +12,11 @@
 
 <style>
   :root{
-    --pink:#ff6fa5;
-    --gold:#f6c453;
-    --violet:#8b7bf7;
-    --sky:#66c7f4;
-    --mint:#7ce0a3;
-    --ink:#5b4a5c;
-    --muted:#9b8a9d;
+    --pink:#ff6fa5; --gold:#f6c453; --violet:#8b7bf7;
+    --sky:#66c7f4; --mint:#7ce0a3;
+    --ink:#5b4a5c; --muted:#9b8a9d;
   }
-
   *{ margin:0; padding:0; box-sizing:border-box; }
-
   html,body{ min-height:100%; }
 
   body{
@@ -32,159 +26,108 @@
       radial-gradient(circle at 85% 18%, #e6e1ff 0%, transparent 55%),
       radial-gradient(circle at 50% 96%, #d9f2ff 0%, transparent 55%),
       #fffaf5;
-    min-height:100vh;
-    display:grid;
-    place-items:center;
-    padding:clamp(20px,5vw,42px) clamp(12px,4vw,22px) 110px;
-    overflow-x:hidden;
-    position:relative;
+    min-height:100vh; display:grid; place-items:center;
+    padding:clamp(18px,4.5vw,38px) clamp(12px,4vw,22px) 110px;
+    overflow-x:hidden; position:relative;
     color:var(--ink);
     -webkit-tap-highlight-color:transparent;
   }
 
-  /* ============ خلفية قلوب ============ */
-  .bg-hearts{
-    position:fixed; inset:0;
-    pointer-events:none; z-index:1; overflow:hidden;
-  }
+  .bg-hearts{ position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
   .bg-heart{
-    position:absolute; bottom:-12vh;
-    opacity:0; user-select:none;
-    animation-name:rise;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
+    position:absolute; bottom:-12vh; opacity:0; user-select:none;
+    animation:rise linear infinite;
   }
   @keyframes rise{
     0%   { transform:translateY(0) rotate(0deg); opacity:0; }
-    12%  { opacity:.6; }
-    85%  { opacity:.4; }
+    12%  { opacity:.6; } 85% { opacity:.4; }
     100% { transform:translateY(-120vh) rotate(340deg); opacity:0; }
   }
-
-  /* ============ كونفيتي ============ */
-  .confetti-layer{
-    position:fixed; inset:0;
-    pointer-events:none; z-index:60; overflow:hidden;
-  }
+  .confetti-layer{ position:fixed; inset:0; pointer-events:none; z-index:60; overflow:hidden; }
   .confetti-piece{
     position:absolute; top:-10vh; display:block;
-    animation-name:fall;
-    animation-timing-function:cubic-bezier(.25,.6,.4,1);
-    animation-fill-mode:forwards;
+    animation:fall cubic-bezier(.25,.6,.4,1) forwards;
   }
   @keyframes fall{
     0%   { transform:translateY(0) rotate(0deg) scale(1); opacity:1; }
     100% { transform:translateY(120vh) rotate(760deg) scale(.9); opacity:.8; }
   }
 
-  /* ============ المسرح ============ */
-  .stage{
-    position:relative; z-index:3;
-    width:100%; max-width:680px;
-    display:grid;
-  }
-
+  .stage{ position:relative; z-index:3; width:100%; max-width:680px; display:grid; }
   .screen{
-    grid-area:1/1;
-    width:100%;
+    grid-area:1/1; width:100%;
     display:grid; place-items:center;
     opacity:0; pointer-events:none;
     transform:scale(.96) translateY(16px);
     transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1);
   }
-  .screen.active{
-    opacity:1; pointer-events:auto;
-    transform:none;
-  }
+  .screen.active{ opacity:1; pointer-events:auto; transform:none; }
 
-  /* ============ اللوحات ============ */
   .panel, .card{
-    position:relative;
-    width:100%;
+    position:relative; width:100%;
     background:rgba(255,255,255,.8);
-    -webkit-backdrop-filter:blur(20px);
-    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.95);
     border-radius:34px;
-    padding:clamp(24px,5.5vw,48px) clamp(18px,5vw,44px);
+    padding:clamp(22px,5vw,44px) clamp(16px,4.5vw,40px);
     text-align:center;
-    box-shadow:
-      0 32px 74px rgba(180,120,160,.24),
-      0 1px 0 rgba(255,255,255,.9) inset;
+    box-shadow:0 32px 74px rgba(180,120,160,.24), 0 1px 0 rgba(255,255,255,.9) inset;
     overflow:hidden;
   }
   .card::before, .panel::before{
-    content:'';
-    position:absolute; inset:0;
+    content:''; position:absolute; inset:0;
     background:linear-gradient(135deg, rgba(255,111,165,.09), transparent 45%, rgba(139,123,247,.09));
     pointer-events:none;
   }
   .card > *, .panel > *{ position:relative; }
 
-  /* ============ عناصر عامة ============ */
   .badge{
     display:inline-block;
-    font-size:clamp(12px,3.1vw,14px);
-    font-weight:800;
-    color:#b3457a;
+    font-size:clamp(12px,3.1vw,14px); font-weight:800; color:#b3457a;
     background:linear-gradient(135deg,#ffe1ef,#ffeec9);
     border:1px solid rgba(255,111,165,.35);
-    padding:7px 18px;
-    border-radius:999px;
-    margin-bottom:18px;
+    padding:7px 18px; border-radius:999px; margin-bottom:16px;
   }
-
   .step-tag{
     display:inline-block;
-    font-size:clamp(11px,3vw,13px);
-    font-weight:800;
-    color:#7c6ba8;
+    font-size:clamp(11px,3vw,13px); font-weight:800; color:#7c6ba8;
     background:rgba(139,123,247,.12);
     border:1px solid rgba(139,123,247,.25);
-    padding:6px 16px;
-    border-radius:999px;
-    margin-bottom:16px;
-    letter-spacing:.3px;
+    padding:6px 16px; border-radius:999px; margin-bottom:14px;
   }
-
   .h1{
-    font-size:clamp(24px,6.4vw,38px);
-    font-weight:900;
-    line-height:1.6;
-    color:var(--ink);
-    margin-bottom:12px;
+    font-size:clamp(22px,6vw,34px); font-weight:900;
+    line-height:1.6; color:var(--ink); margin-bottom:10px;
   }
   .h2{
-    font-size:clamp(19px,5.2vw,28px);
-    font-weight:800;
-    line-height:1.7;
-    color:var(--ink);
-    margin-bottom:6px;
+    font-size:clamp(18px,4.8vw,26px); font-weight:800;
+    line-height:1.7; color:var(--ink); margin-bottom:6px;
   }
   .p{
-    font-size:clamp(14px,3.8vw,17px);
-    font-weight:600;
-    color:var(--muted);
-    line-height:2;
-    margin-bottom:24px;
+    font-size:clamp(14px,3.8vw,17px); font-weight:600;
+    color:var(--muted); line-height:2; margin-bottom:20px;
   }
   .hint{
-    margin-top:16px;
-    font-size:clamp(12px,3.2vw,14px);
-    font-weight:600;
-    color:#b9a9bb;
+    margin-top:14px; font-size:clamp(12px,3.2vw,14px);
+    font-weight:600; color:#b9a9bb;
+  }
+  .emoji-big{
+    display:block; font-size:clamp(50px,14vw,78px);
+    line-height:1; margin:6px auto 10px;
+    animation:floaty 3s ease-in-out infinite;
+    filter:drop-shadow(0 10px 16px rgba(0,0,0,.12));
+  }
+  @keyframes floaty{
+    0%,100%{ transform:translateY(0); }
+    50%    { transform:translateY(-12px); }
   }
 
-  /* ============ الأزرار ============ */
   .btn{
-    font-family:inherit;
-    font-weight:800;
+    font-family:inherit; font-weight:800;
     font-size:clamp(14px,3.9vw,17px);
-    padding:14px 34px;
-    border-radius:999px;
-    border:none;
-    cursor:pointer;
-    transition:transform .22s ease, box-shadow .22s ease, background .22s ease, opacity .3s ease;
+    padding:14px 32px; border-radius:999px;
+    border:none; cursor:pointer;
+    transition:transform .22s, box-shadow .22s, background .22s;
     -webkit-tap-highlight-color:transparent;
   }
   .btn.primary{
@@ -192,81 +135,225 @@
     background:linear-gradient(120deg,#ff6fa5,#f6a93b);
     box-shadow:0 14px 30px rgba(255,111,165,.4);
   }
-  .btn.primary:hover{
-    transform:translateY(-3px);
-    box-shadow:0 20px 40px rgba(255,111,165,.5);
-  }
+  .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 20px 40px rgba(255,111,165,.5); }
   .btn.primary:active{ transform:translateY(0) scale(.97); }
-
   .btn.ghost{
-    color:#8b7bf7;
-    background:rgba(255,255,255,.85);
+    color:#8b7bf7; background:rgba(255,255,255,.85);
     border:1.5px solid rgba(139,123,247,.32);
     font-size:clamp(12px,3.3vw,14px);
-    padding:11px 22px;
-    margin-top:14px;
+    padding:11px 22px; margin-top:12px;
   }
   .btn.ghost:hover{
-    background:#8b7bf7; color:#fff;
-    transform:translateY(-2px);
+    background:#8b7bf7; color:#fff; transform:translateY(-2px);
     box-shadow:0 12px 26px rgba(139,123,247,.35);
   }
-
   .hidden{ display:none !important; }
 
-  /* ============ شريط التقدم + تخطي ============ */
   .progress{
-    position:fixed;
-    bottom:clamp(22px,5vw,34px);
-    left:50%; transform:translateX(-50%) translateY(20px);
-    display:flex; gap:9px;
-    z-index:50;
+    position:fixed; bottom:clamp(22px,5vw,34px); left:50%;
+    transform:translateX(-50%) translateY(20px);
+    display:flex; gap:7px; z-index:50;
     opacity:0; pointer-events:none;
-    transition:opacity .4s ease, transform .4s ease;
+    transition:opacity .4s, transform .4s;
+    max-width:90vw; flex-wrap:wrap; justify-content:center;
   }
   .progress.show{ opacity:1; transform:translateX(-50%) translateY(0); }
   .dot{
-    width:9px; height:9px; border-radius:50%;
+    width:8px; height:8px; border-radius:50%;
     background:rgba(255,111,165,.25);
-    transition:all .35s ease;
+    transition:all .35s;
   }
   .dot.on{
     background:linear-gradient(120deg,#ff6fa5,#f6a93b);
-    width:26px; border-radius:999px;
+    width:22px; border-radius:999px;
     box-shadow:0 4px 12px rgba(255,111,165,.45);
   }
-
   .skip{
-    position:fixed;
-    bottom:clamp(18px,4.5vw,30px);
-    inset-inline-end:clamp(16px,4vw,28px);
-    z-index:50;
-    font-family:inherit;
-    font-size:13px; font-weight:800;
-    color:#9b8a9d;
-    background:rgba(255,255,255,.85);
+    position:fixed; bottom:clamp(18px,4.5vw,30px);
+    inset-inline-end:clamp(16px,4vw,28px); z-index:50;
+    font-family:inherit; font-size:13px; font-weight:800;
+    color:#9b8a9d; background:rgba(255,255,255,.85);
     border:1px solid rgba(155,138,157,.22);
-    padding:9px 18px;
-    border-radius:999px;
-    cursor:pointer;
-    opacity:0; pointer-events:none;
-    transition:opacity .4s ease, color .2s ease, background .2s ease;
+    padding:9px 18px; border-radius:999px;
+    cursor:pointer; opacity:0; pointer-events:none;
+    transition:opacity .4s, color .2s, background .2s;
   }
   .skip.show{ opacity:1; pointer-events:auto; }
   .skip:hover{ color:#6f6072; background:#fff; }
 
-  /* ============ الظرف ============ */
-  .envelope{
+  .toast{
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%) scale(.7);
+    background:linear-gradient(135deg,#ff6fa5,#f6a93b);
+    color:#fff; font-weight:800;
+    font-size:clamp(18px,5vw,26px);
+    padding:18px 32px; border-radius:24px;
+    box-shadow:0 20px 50px rgba(255,111,165,.5);
+    z-index:100; opacity:0; pointer-events:none;
+    transition:opacity .3s, transform .4s cubic-bezier(.2,1.5,.4,1);
+    font-family:inherit; white-space:nowrap;
+    max-width:90vw; text-align:center;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+
+  /* كويز */
+  .quiz-options{
+    display:grid; gap:11px; margin-top:20px; direction:rtl;
+  }
+  .quiz-btn{
+    font-family:inherit;
+    font-size:clamp(14px,4vw,17px); font-weight:700;
+    padding:15px 22px; border-radius:18px;
+    background:rgba(255,255,255,.9);
+    border:2px solid rgba(255,111,165,.28);
+    color:#5b4a5c; cursor:pointer;
+    transition:all .22s; text-align:right;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .quiz-btn:hover{
+    border-color:#ff6fa5;
+    background:linear-gradient(135deg,#fff5f9,#ffeef7);
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(255,111,165,.22);
+  }
+  .quiz-btn.picked{
+    background:linear-gradient(135deg,#ffe1ef,#ffeec9);
+    border-color:#ff6fa5;
+    animation:pickPop .4s;
+  }
+  @keyframes pickPop{
+    0%{transform:scale(1);} 50%{transform:scale(1.04);} 100%{transform:scale(1);}
+  }
+
+  /* ============ صناديق المفاجآت ============ */
+  .boxes{
+    display:flex; justify-content:center;
+    gap:clamp(10px,3vw,22px);
+    margin:24px 0 8px;
+    flex-wrap:wrap; direction:rtl;
+  }
+  .box{
     position:relative;
-    width:min(320px,80vw);
-    aspect-ratio:3/2;
-    margin:24px auto 10px;
-    perspective:1100px;
-    cursor:pointer;
-    transition:transform .3s ease;
+    width:clamp(84px,24vw,110px);
+    height:clamp(84px,24vw,110px);
+    border:none; cursor:pointer;
+    border-radius:22px;
+    background:linear-gradient(160deg, var(--c1), var(--c2));
+    box-shadow:
+      inset -6px -10px 20px rgba(0,0,0,.12),
+      inset 6px 6px 14px rgba(255,255,255,.35),
+      0 16px 30px rgba(255,111,165,.28);
+    display:grid; place-items:center;
+    font-size:clamp(38px,11vw,56px);
+    color:#fff;
+    transition:transform .25s, box-shadow .25s;
+    animation:boxFloat 3.4s ease-in-out infinite;
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+  }
+  .box:nth-child(2){ animation-delay:.5s; }
+  .box:nth-child(3){ animation-delay:1s; }
+  .box:hover{ transform:translateY(-6px) scale(1.04); }
+  .box:active{ transform:translateY(-2px) scale(.98); }
+  .box.opened{
+    animation:none;
+    cursor:default;
+    pointer-events:none;
+  }
+  .box .lid,
+  .box .prize{
+    position:absolute; inset:0;
+    display:grid; place-items:center;
+    transition:transform .55s cubic-bezier(.5,0,.4,1.3), opacity .45s;
+  }
+  .box .lid{
+    font-size:clamp(40px,11vw,58px);
+    text-shadow:0 4px 8px rgba(0,0,0,.18);
+  }
+  .box .prize{
+    font-size:clamp(38px,10vw,54px);
+    transform:scale(.3) rotate(-25deg);
+    opacity:0;
+  }
+  .box.opened .lid{
+    transform:translateY(-140%) rotate(-25deg);
+    opacity:0;
+  }
+  .box.opened .prize{
+    transform:scale(1) rotate(0);
+    opacity:1;
+  }
+  @keyframes boxFloat{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%    { transform:translateY(-10px) rotate(2deg); }
+  }
+  .box.opened::after{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.9), transparent 65%);
+    animation:flash .7s ease-out forwards;
+    pointer-events:none;
+  }
+  @keyframes flash{
+    0%{ opacity:1; transform:scale(.5); }
+    100%{ opacity:0; transform:scale(1.6); }
+  }
+
+  /* ============ شريط الفرحة ============ */
+  .fill-wrap{
+    width:100%; max-width:400px;
+    margin:22px auto 6px;
+    direction:rtl;
+  }
+  .fill-track{
+    position:relative;
+    height:26px;
+    background:rgba(255,111,165,.14);
+    border-radius:999px;
+    overflow:hidden;
+    box-shadow:
+      inset 0 3px 8px rgba(0,0,0,.08),
+      0 0 0 2px rgba(255,255,255,.7);
+  }
+  .fill-bar{
+    height:100%;
+    width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg, #ff6fa5, #f6a93b, #8b7bf7, #66c7f4, #ff6fa5);
+    background-size:300% 100%;
+    animation:shimmer 3s linear infinite;
+    transition:width .5s cubic-bezier(.2,.8,.3,1);
+    box-shadow:0 0 16px rgba(255,111,165,.5) inset;
+  }
+  @keyframes shimmer{
+    0%  { background-position:0% 50%; }
+    100%{ background-position:300% 50%; }
+  }
+  .fill-percent{
+    display:block;
+    margin-top:14px;
+    font-size:clamp(18px,5.5vw,26px);
+    font-weight:900;
+    color:#c04a86;
+    font-family:inherit;
+  }
+  .fill-msg{
+    display:block;
+    margin-top:6px;
+    font-size:clamp(12px,3.3vw,14px);
+    font-weight:700;
+    color:#9b8a9d;
+    min-height:20px;
+  }
+
+  /* ظرف */
+  .envelope{
+    position:relative; width:min(320px,80vw);
+    aspect-ratio:3/2; margin:22px auto 10px;
+    perspective:1100px; cursor:pointer;
+    transition:transform .3s;
   }
   .envelope:hover{ transform:translateY(-4px); }
-
   .env-back{
     position:absolute; inset:0;
     background:linear-gradient(160deg,#ffd9e8,#ffb3d1);
@@ -274,25 +361,19 @@
     box-shadow:0 22px 46px rgba(255,111,165,.32);
   }
   .env-letter{
-    position:absolute;
-    left:6%; right:6%; bottom:8%;
+    position:absolute; left:6%; right:6%; bottom:8%;
     height:80%;
     background:linear-gradient(170deg,#fffdf9,#fff6fb);
     border-radius:10px;
     display:grid; place-items:center;
-    padding:14px 18px;
-    text-align:center;
-    font-size:clamp(13px,3.6vw,16px);
-    font-weight:700;
-    line-height:1.9;
-    color:#7a6a7d;
-    z-index:2;
+    padding:14px 18px; text-align:center;
+    font-size:clamp(13px,3.6vw,16px); font-weight:700;
+    line-height:1.9; color:#7a6a7d; z-index:2;
     box-shadow:0 8px 20px rgba(0,0,0,.08);
     transition:transform .85s cubic-bezier(.2,.85,.3,1) .28s;
   }
   .env-flap{
-    position:absolute; top:0; left:0; right:0;
-    height:62%;
+    position:absolute; top:0; left:0; right:0; height:62%;
     background:linear-gradient(160deg,#ffc2da,#ff9dc2);
     clip-path:polygon(0 0, 100% 0, 50% 100%);
     border-radius:12px 12px 0 0;
@@ -304,15 +385,12 @@
     position:absolute; inset:0;
     background:linear-gradient(160deg,#ffcfe2,#ff9ec4);
     clip-path:polygon(0 100%, 0 36%, 50% 76%, 100% 36%, 100% 100%);
-    border-radius:0 0 12px 12px;
-    z-index:4;
+    border-radius:0 0 12px 12px; z-index:4;
   }
   .seal{
-    position:absolute;
-    bottom:4px; left:50%;
+    position:absolute; bottom:4px; left:50%;
     transform:translateX(-50%);
-    width:36px; height:36px;
-    border-radius:50%;
+    width:36px; height:36px; border-radius:50%;
     background:linear-gradient(135deg,#ff8fb8,#e8457f);
     color:#fff; font-size:16px;
     display:grid; place-items:center;
@@ -321,107 +399,86 @@
   .envelope.open .env-flap{ transform:rotateX(180deg); }
   .envelope.open .env-letter{ transform:translateY(-64%); }
 
-  /* ============ البالونات ============ */
-  .slots{
-    display:flex; justify-content:center;
-    gap:clamp(8px,2.6vw,14px);
-    margin:8px 0 6px;
-    direction:rtl;
-  }
-  .slot{
-    width:clamp(44px,12.5vw,58px);
-    height:clamp(44px,12.5vw,58px);
-    display:grid; place-items:center;
-    border-radius:16px;
-    background:rgba(255,255,255,.65);
-    border:2px dashed rgba(255,111,165,.38);
-    font-family:'Aref Ruqaa', serif;
-    font-size:clamp(22px,6.5vw,30px);
-    font-weight:700;
-    color:#c9b9cc;
-    transition:background .3s ease, border-color .3s ease;
-  }
-  .slot.filled{
-    color:#c04a86;
-    border-style:solid;
-    border-color:transparent;
-    background:linear-gradient(135deg,#ffe1ef,#ffeec9);
-    animation:slotPop .5s cubic-bezier(.2,1.5,.4,1);
-  }
-  @keyframes slotPop{
-    0%  { transform:scale(.35) rotate(-14deg); opacity:0; }
-    60% { transform:scale(1.12) rotate(4deg); }
-    100%{ transform:scale(1) rotate(0); opacity:1; }
-  }
-
-  .balloons{
-    display:flex; justify-content:center;
-    gap:clamp(6px,2.6vw,24px);
-    margin:26px 0 6px;
-    flex-wrap:wrap;
-    direction:rtl;
-  }
-  .balloon{
+  /* الشمعة */
+  .candle-stage{
     position:relative;
-    width:clamp(56px,15.5vw,76px);
-    height:clamp(70px,19.5vw,94px);
-    padding:0; border:none; cursor:pointer;
-    border-radius:50% 50% 48% 48% / 44% 44% 56% 56%;
-    background:
-      radial-gradient(circle at 32% 26%, rgba(255,255,255,.9), transparent 44%),
-      linear-gradient(165deg, var(--c1), var(--c2));
+    height:clamp(180px,45vw,240px);
+    display:grid; place-items:end center;
+    margin:14px 0 6px;
+  }
+  .candle{
+    position:relative; cursor:pointer;
+    width:clamp(34px,9vw,46px);
+    height:clamp(110px,30vw,150px);
+    border-radius:8px;
+    background:linear-gradient(180deg,#fff 0%, #ffe1ef 40%, #ffb3d1 100%);
     box-shadow:
-      inset -6px -10px 18px rgba(0,0,0,.10),
-      0 12px 24px rgba(255,111,165,.22);
-    transition:transform .2s ease;
-    animation:balloonFloat 3.2s ease-in-out infinite;
+      inset -6px 0 12px rgba(0,0,0,.08),
+      0 12px 26px rgba(255,111,165,.28);
+    margin-bottom:0;
+    transition:transform .25s;
     -webkit-tap-highlight-color:transparent;
   }
-  .balloon:hover{ transform:scale(1.08); }
-  .balloon::before{
-    content:''; position:absolute;
-    bottom:-5px; left:50%; transform:translateX(-50%);
-    width:0; height:0;
-    border-left:7px solid transparent;
-    border-right:7px solid transparent;
-    border-top:9px solid var(--c2);
-    z-index:2;
+  .candle:hover{ transform:translateY(-2px); }
+  .candle::after{
+    content:''; position:absolute; bottom:-4px; left:50%;
+    transform:translateX(-50%); width:60%; height:6px;
+    background:rgba(200,150,180,.4); border-radius:50%;
+    filter:blur(2px);
   }
-  .balloon::after{
-    content:''; position:absolute;
-    top:100%; left:50%; transform:translateX(-50%);
-    width:1.5px; height:44px;
-    background:rgba(140,120,150,.4);
-    border-radius:0 0 45% 45%;
+  .wick{
+    position:absolute; top:-8px; left:50%;
+    transform:translateX(-50%);
+    width:2px; height:10px;
+    background:#333; border-radius:2px;
   }
-  .balloon.popped{
-    animation:popOut .4s ease forwards;
-    animation-delay:0s !important;
-    pointer-events:none;
+  .flame{
+    position:absolute; top:-34px; left:50%;
+    transform:translateX(-50%);
+    width:22px; height:34px;
+    background:radial-gradient(circle at 50% 30%, #fff 0%, #ffe98a 22%, #ffb13a 60%, #ff6b1a 100%);
+    border-radius:50% 50% 40% 40% / 60% 60% 40% 40%;
+    box-shadow:
+      0 0 24px rgba(255,180,60,.85),
+      0 0 46px rgba(255,120,30,.55);
+    animation:flicker .9s ease-in-out infinite;
+    transform-origin:bottom center;
+    transition:opacity .4s, transform .4s;
   }
-  @keyframes balloonFloat{
-    0%,100%{ transform:translateY(0) rotate(-2deg); }
-    50%    { transform:translateY(-11px) rotate(2deg); }
+  @keyframes flicker{
+    0%,100%{ transform:translateX(-50%) scale(1) rotate(0deg); }
+    25%    { transform:translateX(-52%) scale(1.05) rotate(-2deg); }
+    75%    { transform:translateX(-48%) scale(.96) rotate(2deg); }
   }
-  @keyframes popOut{
-    0%  { transform:scale(1);   opacity:1; }
-    35% { transform:scale(1.28); opacity:1; }
-    100%{ transform:scale(.15); opacity:0; }
+  .candle.blown .flame{
+    opacity:0; transform:translateX(-50%) scale(.2);
+  }
+  .smoke{
+    position:absolute; top:-34px; left:50%;
+    transform:translateX(-50%);
+    width:8px; height:8px;
+    background:rgba(160,160,170,.6);
+    border-radius:50%;
+    opacity:0; pointer-events:none;
+    filter:blur(3px);
+  }
+  .candle.blown .smoke{
+    animation:smokeRise 2s ease-out forwards;
+  }
+  .smoke.s2{ animation-delay:.25s !important; }
+  .smoke.s3{ animation-delay:.5s !important; }
+  @keyframes smokeRise{
+    0%  { opacity:.8; transform:translate(-50%, 0) scale(.6); }
+    100%{ opacity:0;  transform:translate(-50%, -120px) scale(2.6); }
   }
 
-  /* ============ بطاقة الكشط ============ */
+  /* الكشط */
   .scratch-wrap{
-    position:relative;
-    width:100%;
-    max-width:420px;
-    margin:22px auto 4px;
-    aspect-ratio:5/3;
-    border-radius:24px;
-    overflow:hidden;
+    position:relative; width:100%; max-width:420px;
+    margin:22px auto 4px; aspect-ratio:5/3;
+    border-radius:24px; overflow:hidden;
     background:linear-gradient(135deg,#fff4f9,#eef0ff);
-    box-shadow:
-      0 0 0 2px rgba(255,255,255,.9) inset,
-      0 16px 38px rgba(180,120,160,.2);
+    box-shadow:0 0 0 2px rgba(255,255,255,.9) inset, 0 16px 38px rgba(180,120,160,.2);
   }
   .scratch-reveal{
     position:absolute; inset:0;
@@ -429,60 +486,101 @@
     gap:4px; text-align:center; padding:14px;
   }
   .sr-small{
-    font-size:clamp(13px,3.6vw,17px);
-    font-weight:700;
-    color:var(--muted);
+    font-size:clamp(13px,3.6vw,17px); font-weight:700; color:var(--muted);
   }
   .sr-big{
-    font-family:'Aref Ruqaa', serif;
-    font-weight:700;
-    font-size:clamp(28px,9vw,52px);
-    line-height:1.4;
+    font-family:'Aref Ruqaa', serif; font-weight:700;
+    font-size:clamp(28px,9vw,52px); line-height:1.4;
     background:linear-gradient(100deg,#ff6fa5,#f6a93b,#8b7bf7);
-    -webkit-background-clip:text;
-    background-clip:text;
+    -webkit-background-clip:text; background-clip:text;
     color:transparent;
     filter:drop-shadow(0 5px 12px rgba(255,111,165,.22));
   }
   #scratchCanvas{
     position:absolute; inset:0;
-    width:100%; height:100%;
-    display:block;
-    cursor:crosshair;
-    touch-action:none;
-    transition:opacity .65s ease;
+    width:100%; height:100%; display:block;
+    cursor:crosshair; touch-action:none;
+    transition:opacity .65s;
   }
   #scratchCanvas.gone{ opacity:0; pointer-events:none; }
 
-  /* ============ البطاقة النهائية ============ */
-  .to{
-    font-size:clamp(15px,4.1vw,21px);
-    font-weight:800;
-    color:#6b5a6d;
-    margin-bottom:14px;
+  /* العجلة */
+  .wheel-wrap{
+    position:relative;
+    width:clamp(220px,65vw,280px);
+    aspect-ratio:1;
+    margin:16px auto 6px;
+    display:grid; place-items:center;
   }
-  .big span{
-    display:block;
-    font-size:clamp(14px,3.8vw,18px);
-    font-weight:700;
-    color:#8d7b90;
-    margin-bottom:2px;
+  .wheel-pointer{
+    position:absolute; top:-12px; left:50%;
+    transform:translateX(-50%);
+    width:0; height:0;
+    border-left:14px solid transparent;
+    border-right:14px solid transparent;
+    border-top:22px solid #c04a86;
+    filter:drop-shadow(0 4px 8px rgba(200,60,110,.5));
+    z-index:5;
   }
-  .big strong{
-    display:block;
+  .wheel{
+    width:100%; height:100%; border-radius:50%;
+    position:relative;
+    transition:transform 4.6s cubic-bezier(.16,.8,.2,1);
+    box-shadow:
+      inset 0 0 0 6px #fff,
+      inset 0 0 0 10px rgba(255,111,165,.4),
+      0 20px 46px rgba(180,120,160,.3);
+    background:conic-gradient(
+      #ff9ec4 0deg 90deg,
+      #b8c6ff 90deg 180deg,
+      #ffe0a3 180deg 270deg,
+      #a8ebc4 270deg 360deg
+    );
+    transform:rotate(0deg);
+  }
+  .wheel-label{
+    position:absolute;
+    left:50%; top:50%;
+    transform-origin:0 0;
     font-family:'Aref Ruqaa', serif;
     font-weight:700;
-    font-size:clamp(38px,12vw,74px);
+    font-size:clamp(18px,5vw,24px);
+    color:#fff;
+    text-shadow:0 2px 4px rgba(0,0,0,.25);
+    pointer-events:none;
+    white-space:nowrap;
+  }
+  .wheel-center{
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:46px; height:46px; border-radius:50%;
+    background:linear-gradient(135deg,#ff6fa5,#f6a93b);
+    box-shadow:0 6px 16px rgba(255,111,165,.5), inset 0 0 0 4px #fff;
+    z-index:4;
+    display:grid; place-items:center;
+    color:#fff; font-size:20px;
+  }
+
+  /* البطاقة النهائية */
+  .to{
+    font-size:clamp(15px,4.1vw,21px); font-weight:800;
+    color:#6b5a6d; margin-bottom:14px;
+  }
+  .big span{
+    display:block; font-size:clamp(14px,3.8vw,18px);
+    font-weight:700; color:#8d7b90; margin-bottom:2px;
+  }
+  .big strong{
+    display:block; font-family:'Aref Ruqaa', serif;
+    font-weight:700; font-size:clamp(38px,12vw,74px);
     line-height:1.35;
     background:linear-gradient(100deg,#ff6fa5 0%,#f6a93b 48%,#8b7bf7 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
+    -webkit-background-clip:text; background-clip:text;
     color:transparent;
     filter:drop-shadow(0 6px 14px rgba(255,111,165,.24));
   }
   .emoji-row{
-    font-size:clamp(26px,7.5vw,38px);
-    letter-spacing:10px;
+    font-size:clamp(26px,7.5vw,38px); letter-spacing:10px;
     margin:8px 0 18px;
     animation:bounceRow 2.6s ease-in-out infinite;
   }
@@ -491,16 +589,13 @@
     50%    { transform:translateY(-8px); }
   }
   .msg{
-    font-size:clamp(14px,3.8vw,17px);
-    line-height:2.1;
-    color:#6f6072;
-    font-weight:600;
-    max-width:460px;
-    margin:0 auto;
+    font-size:clamp(14px,3.8vw,17px); line-height:2.1;
+    color:#6f6072; font-weight:600;
+    max-width:460px; margin:0 auto;
   }
   .divider{
     display:flex; align-items:center; gap:12px;
-    margin:26px 0 18px;
+    margin:24px 0 16px;
   }
   .divider::before, .divider::after{
     content:''; flex:1; height:1px;
@@ -509,17 +604,14 @@
   .divider span{ font-size:18px; }
   .from{
     font-size:clamp(13px,3.5vw,16px);
-    color:var(--muted);
-    font-weight:700;
+    color:var(--muted); font-weight:700;
   }
   .from .name{
-    color:#c04a86;
-    font-weight:800;
+    color:#c04a86; font-weight:800;
     border-bottom:2px dashed rgba(255,111,165,.5);
     padding-bottom:2px;
   }
 
-  /* ظهور متتالي لعناصر البطاقة النهائية */
   .screen.active .card > *{ animation:fadeUp .75s cubic-bezier(.2,.8,.3,1) both; }
   .screen.active .card > *:nth-child(1){ animation-delay:.10s; }
   .screen.active .card > *:nth-child(2){ animation-delay:.22s; }
@@ -538,7 +630,6 @@
     .panel, .card{ border-radius:28px; }
     .emoji-row{ letter-spacing:6px; }
   }
-
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
   }
@@ -549,27 +640,120 @@
 
   <div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
   <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <main class="stage">
 
-    <!-- ═══════════ الخطوة 0: التمهيد ═══════════ -->
+    <!-- ══ 0: تمهيد ══ -->
     <section class="screen active" data-step="0">
       <div class="panel">
-        <span class="badge">🤫 قبل ما نبدأ</span>
-        <h1 class="h1">في خبر حلو كتير…</h1>
-        <p class="p">بس بدنا نتأكد إنكم جاهزين 😄</p>
-        <button class="btn primary" id="startBtn">جاهزين! يلا 👇</button>
-        <p class="hint">الخبر رح يوصل بعد ٤ خطوات صغيرة</p>
+        <span class="badge">🎮 لعبة صغيرة</span>
+        <span class="emoji-big">🎈</span>
+        <h1 class="h1">بدنا نلعب لعبة صغيرة…</h1>
+        <p class="p">٩ مراحل صغيرة وبعدها رح تعرفوا كل شي 😄</p>
+        <button class="btn primary" id="startBtn">يلا نبدأ 👇</button>
+        <p class="hint">اللعبة سهلة وحلوة… بس بدها شوية صبر</p>
       </div>
     </section>
 
-    <!-- ═══════════ الخطوة 1: الظرف ═══════════ -->
+    <!-- ══ 1: كويز ١ ══ -->
     <section class="screen" data-step="1">
       <div class="panel">
-        <span class="step-tag">الخطوة ١ من ٤</span>
+        <span class="step-tag">سؤال ١ من ٣</span>
+        <h2 class="h2">مين أكتر واحد بيتحمس للأخبار الحلوة؟ 🎉</h2>
+        <p class="p" style="margin-bottom:0">اختاروا الجواب… أي جواب صح 😄</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-feedback="أكيد أمي! 💖">أمي 💖</button>
+          <button class="quiz-btn" data-feedback="أبوي كمان بيتحمس! 💙">أبوي 💙</button>
+          <button class="quiz-btn" data-feedback="خواتك ما بيتفوتوا! 🌸">خواتي 🌸</button>
+          <button class="quiz-btn" data-feedback="صح! كلنا سوا! 🥳">كلنا 🥳</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 2: كويز ٢ ══ -->
+    <section class="screen" data-step="2">
+      <div class="panel">
+        <span class="step-tag">سؤال ٢ من ٣</span>
+        <h2 class="h2">شو رح نعمل أول ما نوصل؟ 🤔</h2>
+        <p class="p" style="margin-bottom:0">توقعوا…</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-feedback="أكيد! 😂">نضحك كتير 😂</button>
+          <button class="quiz-btn" data-feedback="هههه صار معنا 🥹">نبكي من الفرح 🥹</button>
+          <button class="quiz-btn" data-feedback="أحلى شي! 🤗">نحضن بعض 🤗</button>
+          <button class="quiz-btn" data-feedback="كلهم سوا! 🥰">كلهم سوا 🥰</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 3: كويز ٣ ══ -->
+    <section class="screen" data-step="3">
+      <div class="panel">
+        <span class="step-tag">سؤال ٣ من ٣</span>
+        <h2 class="h2">شو أحلى لون للفرحة؟ 🎨</h2>
+        <p class="p" style="margin-bottom:0">كل الألوان حلوة… بس اختاروا</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-feedback="وردي 🩷 حلو كتير!">وردي 🩷</button>
+          <button class="quiz-btn" data-feedback="ذهبي ✨ فخم!">ذهبي ✨</button>
+          <button class="quiz-btn" data-feedback="سماوي 💙 هادي!">سماوي 💙</button>
+          <button class="quiz-btn" data-feedback="أخضر 🍀 حلو!">أخضر 🍀</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 4: صناديق المفاجآت (بدل البالونات) ══ -->
+    <section class="screen" data-step="4">
+      <div class="panel">
+        <span class="step-tag">مرحلة ١ من ٦</span>
+        <h2 class="h2">افتحوا الصناديق الثلاثة 🎁</h2>
+        <p class="p" style="margin-bottom:6px">كل صندوق فيه لمحة صغيرة… بس ما بتعرفوا شو الخبر بعد</p>
+
+        <div class="boxes" id="boxes">
+          <button class="box" data-prize="🌟" data-msg="في شي حلو كتير جاي…" style="--c1:#ffb3d1;--c2:#ff5f9e" aria-label="افتحوا الصندوق ١">
+            <span class="lid">🎁</span>
+            <span class="prize">🌟</span>
+          </button>
+          <button class="box" data-prize="💫" data-msg="بس لسا ما وصلنا للنهاية…" style="--c1:#b8c6ff;--c2:#6f7bf7" aria-label="افتحوا الصندوق ٢">
+            <span class="lid">🎁</span>
+            <span class="prize">💫</span>
+          </button>
+          <button class="box" data-prize="✨" data-msg="قربنا… خلّوا صبركم!" style="--c1:#ffe0a3;--c2:#f0a83c" aria-label="افتحوا الصندوق ٣">
+            <span class="lid">🎁</span>
+            <span class="prize">✨</span>
+          </button>
+        </div>
+
+        <p class="hint">افتحوا الثلاثة عشان تكمّلوا</p>
+        <button class="btn primary hidden" id="next4">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ══ 5: شريط الفرحة (بدل ترتيب الحروف) ══ -->
+    <section class="screen" data-step="5">
+      <div class="panel">
+        <span class="step-tag">مرحلة ٢ من ٦</span>
+        <h2 class="h2">املأوا شريط الفرحة 🎉</h2>
+        <p class="p" style="margin-bottom:6px">اضغطوا الزر… كل ضغطة بتزيد الفرحة شوي</p>
+
+        <div class="fill-wrap">
+          <div class="fill-track">
+            <div class="fill-bar" id="fillBar"></div>
+          </div>
+          <span class="fill-percent" id="fillPercent">0%</span>
+          <span class="fill-msg" id="fillMsg">يلا ابدأوا 👇</span>
+        </div>
+
+        <button class="btn primary" id="fillBtn" style="margin-top:12px">اضغطوا هون 💛</button>
+        <button class="btn primary hidden" id="next5" style="margin-top:12px">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ══ 6: الظرف ══ -->
+    <section class="screen" data-step="6">
+      <div class="panel">
+        <span class="step-tag">مرحلة ٣ من ٦</span>
         <h2 class="h2">افتحوا الظرف 💌</h2>
         <p class="p" style="margin-bottom:6px">في شي جوّا… بس بدو شوية صبر</p>
-
         <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="افتحوا الظرف">
           <div class="env-back"></div>
           <div class="env-letter">
@@ -578,43 +762,35 @@
           <div class="env-flap"><span class="seal">❤</span></div>
           <div class="env-front"></div>
         </div>
-
-        <button class="btn primary hidden" id="next1">كمّلوا 👈</button>
+        <button class="btn primary hidden" id="next6">كمّلوا 👈</button>
       </div>
     </section>
 
-    <!-- ═══════════ الخطوة 2: البالونات ═══════════ -->
-    <section class="screen" data-step="2">
+    <!-- ══ 7: الشمعة ══ -->
+    <section class="screen" data-step="7">
       <div class="panel">
-        <span class="step-tag">الخطوة ٢ من ٤</span>
-        <h2 class="h2">فقعوا البالونات الأربعة 🎈</h2>
-        <p class="p" style="margin-bottom:14px">كل بالون بيطلع حرف… جمّعوهم</p>
-
-        <div class="slots" id="slots">
-          <span class="slot" data-i="0">؟</span>
-          <span class="slot" data-i="1">؟</span>
-          <span class="slot" data-i="2">؟</span>
-          <span class="slot" data-i="3">؟</span>
+        <span class="step-tag">مرحلة ٤ من ٦</span>
+        <h2 class="h2">اطفوا الشمعة 🎂</h2>
+        <p class="p" style="margin-bottom:6px">تمنّوا أمنية… واضغطوا على الشمعة</p>
+        <div class="candle-stage">
+          <div class="candle" id="candle" role="button" tabindex="0" aria-label="اطفوا الشمعة">
+            <span class="wick"></span>
+            <span class="flame"></span>
+            <span class="smoke"></span>
+            <span class="smoke s2"></span>
+            <span class="smoke s3"></span>
+          </div>
         </div>
-
-        <div class="balloons" id="balloons">
-          <button class="balloon" data-i="0" data-letter="ح" style="--c1:#ffb3d1;--c2:#ff5f9e; animation-delay:0s" aria-label="بالون ١"></button>
-          <button class="balloon" data-i="1" data-letter="ف" style="--c1:#b8c6ff;--c2:#6f7bf7; animation-delay:.35s" aria-label="بالون ٢"></button>
-          <button class="balloon" data-i="2" data-letter="ي" style="--c1:#ffe0a3;--c2:#f0a83c; animation-delay:.7s" aria-label="بالون ٣"></button>
-          <button class="balloon" data-i="3" data-letter="د" style="--c1:#a8ebc4;--c2:#3fc47c; animation-delay:1.05s" aria-label="بالون ٤"></button>
-        </div>
-
-        <button class="btn primary hidden" id="next2">كمّلوا 👈</button>
+        <button class="btn primary hidden" id="next7">كمّلوا 👈</button>
       </div>
     </section>
 
-    <!-- ═══════════ الخطوة 3: الكشط ═══════════ -->
-    <section class="screen" data-step="3">
+    <!-- ══ 8: الكشط ══ -->
+    <section class="screen" data-step="8">
       <div class="panel">
-        <span class="step-tag">الخطوة ٣ من ٤</span>
+        <span class="step-tag">مرحلة ٥ من ٦</span>
         <h2 class="h2">اكشطوا البطاقة بإصبعكم 🪙</h2>
         <p class="p" style="margin-bottom:6px">مرّروا إصبعكم فوق البطاقة… وشوفوا شو مستخبّي</p>
-
         <div class="scratch-wrap">
           <div class="scratch-reveal">
             <span class="sr-small">رح تصيروا</span>
@@ -622,58 +798,67 @@
           </div>
           <canvas id="scratchCanvas"></canvas>
         </div>
-
         <button class="btn ghost" id="revealNow">مش قادرين نكشط؟ اضغطوا هون</button>
-        <button class="btn primary hidden" id="next3">كمّلوا 👈</button>
+        <button class="btn primary hidden" id="next8">كمّلوا 👈</button>
       </div>
     </section>
 
-    <!-- ═══════════ الخطوة 4: الخبر ═══════════ -->
-    <section class="screen" data-step="4">
+    <!-- ══ 9: عجلة الحظ ══ -->
+    <section class="screen" data-step="9">
+      <div class="panel">
+        <span class="step-tag">مرحلة ٦ من ٦</span>
+        <h2 class="h2">دوّروا العجلة 🎡</h2>
+        <p class="p" style="margin-bottom:6px">وين رح توقف…؟ اضغطوا على العجلة وشوفوا</p>
+        <div class="wheel-wrap">
+          <div class="wheel-pointer"></div>
+          <div class="wheel" id="wheel">
+            <span class="wheel-label" style="transform:rotate(45deg) translate(46px, -8px)">ولد</span>
+            <span class="wheel-label" style="transform:rotate(135deg) translate(46px, -8px)">بنت</span>
+            <span class="wheel-label" style="transform:rotate(225deg) translate(46px, -8px)">توأم</span>
+            <span class="wheel-label" style="transform:rotate(315deg) translate(46px, -8px)">مفاجأة</span>
+          </div>
+          <div class="wheel-center">🎁</div>
+        </div>
+        <button class="btn ghost" id="spinBtn">دوّروا العجلة 🎡</button>
+        <button class="btn primary hidden" id="next9">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ══ 10: الخبر النهائي ══ -->
+    <section class="screen" data-step="10">
       <div class="card">
         <div class="badge">🎉 خبر حلو كتير 🎉</div>
-
         <h2 class="to">لأحلى أب وأم وأخوات 💛</h2>
-
         <div class="big">
           <span>رح تصيروا</span>
           <strong>جدّو وتيتا</strong>
         </div>
-
         <div class="emoji-row">👶 🍼 ✨</div>
-
         <p class="msg">
           قلبنا مليان فرح، ومنستنى هالضيف الصغير بفارغ الصبر.<br>
           الله يتمم على خير ويجعله من الصالحين 🤍
         </p>
-
         <div class="divider"><span>💛</span></div>
-
         <p class="from">من: <span class="name">[اكتب اسمك هون]</span></p>
-
-        <button class="btn ghost" id="againBtn" style="margin-top:22px">🔁 شوفوا الخبر مرة تانية</button>
+        <button class="btn ghost" id="againBtn" style="margin-top:22px">🔁 العبوا اللعبة مرة تانية</button>
       </div>
     </section>
 
   </main>
 
-  <!-- تقدم + تخطي -->
   <div class="progress" id="progress" aria-hidden="true">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
   </div>
   <button class="skip" id="skipBtn">تخطي ⏭</button>
 
 <script>
-/* ══════════════════════════════════════════
-   ١) قلوب الخلفية
-   ══════════════════════════════════════════ */
+/* ═══ خلفية ═══ */
 (function createHearts(){
   const box = document.getElementById('bgHearts');
-  const glyphs = ['💛','🤍','💗','✨','🍼','👶','💫','🎈'];
-  for(let i = 0; i < 18; i++){
+  const glyphs = ['💛','🤍','💗','✨','🍼','👶','💫','🎈','🎉'];
+  for(let i = 0; i < 20; i++){
     const h = document.createElement('span');
     h.className = 'bg-heart';
     h.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
@@ -685,20 +870,16 @@
   }
 })();
 
-/* ══════════════════════════════════════════
-   ٢) الكونفيتي
-   ══════════════════════════════════════════ */
+/* ═══ كونفيتي ═══ */
 const COLORS = ['#ff6fa5','#f6c453','#8b7bf7','#66c7f4','#7ce0a3','#ff9f7a','#ffffff'];
 
 function burstConfetti(count){
   const layer = document.getElementById('confetti');
   const total = count || 130;
   const frag = document.createDocumentFragment();
-
   for(let i = 0; i < total; i++){
     const p = document.createElement('i');
     p.className = 'confetti-piece';
-
     const size = 6 + Math.random() * 10;
     p.style.left = (Math.random() * 100) + 'vw';
     p.style.width = size + 'px';
@@ -707,116 +888,180 @@ function burstConfetti(count){
     p.style.animationDuration = (2.6 + Math.random() * 2.8) + 's';
     p.style.animationDelay = (Math.random() * 1.4) + 's';
     p.style.opacity = (0.7 + Math.random() * 0.3).toFixed(2);
-
     if(Math.random() > 0.65) p.style.borderRadius = '50%';
     if(Math.random() > 0.85) p.style.transform = 'rotate(45deg)';
-
     frag.appendChild(p);
   }
-
   layer.innerHTML = '';
   layer.appendChild(frag);
   setTimeout(() => { layer.innerHTML = ''; }, 9000);
 }
 
-/* ══════════════════════════════════════════
-   ٣) التنقل بين الخطوات
-   ══════════════════════════════════════════ */
-const screens   = document.querySelectorAll('.screen');
+/* ═══ توست ═══ */
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+function showToast(msg, duration = 900){
+  clearTimeout(toastTimer);
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), duration);
+}
+
+/* ═══ تنقل ═══ */
+const screens    = document.querySelectorAll('.screen');
 const progressEl = document.getElementById('progress');
-const dots      = document.querySelectorAll('.dot');
-const skipBtn   = document.getElementById('skipBtn');
-let currentStep = 0;
+const dots       = document.querySelectorAll('.dot');
+const skipBtn    = document.getElementById('skipBtn');
+let currentStep  = 0;
 
 function showStep(n){
   currentStep = n;
+  screens.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));
 
-  screens.forEach(s => {
-    s.classList.toggle('active', Number(s.dataset.step) === n);
-  });
+  progressEl.classList.toggle('show', n >= 1 && n <= 9);
+  dots.forEach((d, i) => d.classList.toggle('on', i < n - 1));
+  skipBtn.classList.toggle('show', n >= 1 && n <= 9);
 
-  // شريط التقدم (يظهر بالخطوات ١-٣)
-  progressEl.classList.toggle('show', n >= 1 && n <= 3);
-  dots.forEach((d, i) => d.classList.toggle('on', i < n));
-
-  // زر التخطي
-  skipBtn.classList.toggle('show', n >= 1 && n <= 3);
-
-  // تجهيز الكشط
-  if(n === 3) setTimeout(setupScratch, 80);
-
-  // كونفيتي للخبر النهائي
-  if(n === 4){
+  if(n === 8) setTimeout(setupScratch, 80);
+  if(n === 10){
     burstConfetti(150);
     setTimeout(() => burstConfetti(80), 850);
-    try{ if(navigator.vibrate) navigator.vibrate([40, 70, 40, 70, 60]); }catch(e){}
+    setTimeout(() => burstConfetti(80), 1700);
+    try{ if(navigator.vibrate) navigator.vibrate([40,70,40,70,60]); }catch(e){}
   }
-
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* زر البداية */
 document.getElementById('startBtn').addEventListener('click', () => showStep(1));
+skipBtn.addEventListener('click', () => showStep(10));
 
-/* زر التخطي → يروح مباشرة للخبر */
-skipBtn.addEventListener('click', () => showStep(4));
+/* ═══ كويزات ═══ */
+document.querySelectorAll('.quiz-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.quiz-options');
+    if(parent.dataset.done === '1') return;
+    parent.dataset.done = '1';
+    btn.classList.add('picked');
+    try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
+    showToast(btn.dataset.feedback || 'تمام! 💛', 850);
+    burstConfetti(35);
+    setTimeout(() => {
+      parent.dataset.done = '0';
+      showStep(currentStep + 1);
+    }, 900);
+  });
+});
 
-/* ══════════════════════════════════════════
-   ٤) الخطوة ١ — الظرف
-   ══════════════════════════════════════════ */
+/* ═══ صناديق المفاجآت (الخطوة 4) ═══ */
+const boxEls = document.querySelectorAll('.box');
+const next4  = document.getElementById('next4');
+let openedBoxes = 0;
+
+boxEls.forEach(box => {
+  box.addEventListener('click', () => {
+    if(box.classList.contains('opened')) return;
+    box.classList.add('opened');
+    try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
+    burstConfetti(25);
+
+    const msg = box.dataset.msg || 'شي حلو 💛';
+    showToast(msg, 950);
+
+    openedBoxes++;
+    if(openedBoxes === boxEls.length){
+      setTimeout(() => {
+        next4.classList.remove('hidden');
+        showToast('جهزوا حالكم للمرحلة الجاية… 👀', 1000);
+      }, 500);
+    }
+  });
+});
+next4.addEventListener('click', () => showStep(5));
+
+/* ═══ شريط الفرحة (الخطوة 5) ═══ */
+const fillBar     = document.getElementById('fillBar');
+const fillPercent = document.getElementById('fillPercent');
+const fillMsg     = document.getElementById('fillMsg');
+const fillBtn     = document.getElementById('fillBtn');
+const next5       = document.getElementById('next5');
+
+const FILL_MESSAGES = [
+  'يلا ابدأوا 👇',           // 0
+  'شوي… شوي… 🩷',             // 1
+  'عم نتقدم! 💛',              // 2
+  'الفرحة عم تكبر ✨',          // 3
+  'نص الطريق! 🎉',              // 4
+  'قربنا كتير… 💫',            // 5
+  'لسا شوي! 🌟',                // 6
+  'تقريباً خلصنا 🥳',          // 7
+  'خلصنا! جهزوا حالكم 🎊'       // 8 (100%)
+];
+
+let fillLevel = 0;              // 0..8
+const FILL_TOTAL = 8;
+
+function updateFill(){
+  const pct = Math.round((fillLevel / FILL_TOTAL) * 100);
+  fillBar.style.width = pct + '%';
+  fillPercent.textContent = pct + '%';
+  fillMsg.textContent = FILL_MESSAGES[fillLevel] || '';
+
+  if(fillLevel >= FILL_TOTAL){
+    fillBtn.classList.add('hidden');
+    next5.classList.remove('hidden');
+    burstConfetti(70);
+    try{ if(navigator.vibrate) navigator.vibrate([30,60,30]); }catch(e){}
+  }
+}
+
+fillBtn.addEventListener('click', () => {
+  if(fillLevel >= FILL_TOTAL) return;
+  fillLevel++;
+  try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
+  burstConfetti(18);
+  updateFill();
+});
+next5.addEventListener('click', () => showStep(6));
+
+/* ═══ الظرف (الخطوة 6) ═══ */
 const envelope = document.getElementById('envelope');
-const next1    = document.getElementById('next1');
+const next6    = document.getElementById('next6');
 
 function openEnvelope(){
   if(envelope.classList.contains('open')) return;
   envelope.classList.add('open');
   try{ if(navigator.vibrate) navigator.vibrate(25); }catch(e){}
-  setTimeout(() => next1.classList.remove('hidden'), 950);
+  setTimeout(() => next6.classList.remove('hidden'), 950);
 }
-
 envelope.addEventListener('click', openEnvelope);
 envelope.addEventListener('keydown', e => {
   if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnvelope(); }
 });
-next1.addEventListener('click', () => showStep(2));
+next6.addEventListener('click', () => showStep(7));
 
-/* ══════════════════════════════════════════
-   ٥) الخطوة ٢ — البالونات
-   ══════════════════════════════════════════ */
-const balloons = document.querySelectorAll('.balloon');
-const slots    = document.querySelectorAll('.slot');
-const next2    = document.getElementById('next2');
-let poppedCount = 0;
+/* ═══ الشمعة (الخطوة 7) ═══ */
+const candle = document.getElementById('candle');
+const next7  = document.getElementById('next7');
+let candleBlown = false;
 
-balloons.forEach(b => {
-  b.addEventListener('click', () => {
-    if(b.classList.contains('popped')) return;
-    b.classList.add('popped');
-    try{ if(navigator.vibrate) navigator.vibrate(18); }catch(e){}
-
-    const i = Number(b.dataset.i);
-    const slot = slots[i];
-    if(slot && !slot.classList.contains('filled')){
-      slot.textContent = b.dataset.letter;
-      slot.classList.add('filled');
-    }
-
-    poppedCount++;
-    if(poppedCount === balloons.length){
-      setTimeout(() => {
-        next2.classList.remove('hidden');
-        burstConfetti(50);
-      }, 420);
-    }
-  });
+function blowCandle(){
+  if(candleBlown) return;
+  candleBlown = true;
+  candle.classList.add('blown');
+  try{ if(navigator.vibrate) navigator.vibrate(35); }catch(e){}
+  burstConfetti(40);
+  showToast('تمنّيتوا؟ 🌟', 900);
+  setTimeout(() => next7.classList.remove('hidden'), 800);
+}
+candle.addEventListener('click', blowCandle);
+candle.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); blowCandle(); }
 });
-next2.addEventListener('click', () => showStep(3));
+next7.addEventListener('click', () => showStep(8));
 
-/* ══════════════════════════════════════════
-   ٦) الخطوة ٣ — بطاقة الكشط
-   ══════════════════════════════════════════ */
+/* ═══ الكشط (الخطوة 8) ═══ */
 const scratchCanvas = document.getElementById('scratchCanvas');
-const next3         = document.getElementById('next3');
+const next8         = document.getElementById('next8');
 const revealNowBtn  = document.getElementById('revealNow');
 let scratchReady    = false;
 let scratchDone     = false;
@@ -824,7 +1069,6 @@ let scratchDone     = false;
 function setupScratch(){
   if(scratchReady || scratchDone) return;
   scratchReady = true;
-
   const wrap = scratchCanvas.parentElement;
   const rect = wrap.getBoundingClientRect();
   if(!rect.width){ scratchReady = false; setTimeout(setupScratch, 120); return; }
@@ -836,7 +1080,6 @@ function setupScratch(){
   const ctx = scratchCanvas.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  // طبقة الكشط
   const g = ctx.createLinearGradient(0, 0, rect.width, rect.height);
   g.addColorStop(0,   '#d8c9f2');
   g.addColorStop(0.5, '#f3c9de');
@@ -844,7 +1087,6 @@ function setupScratch(){
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, rect.width, rect.height);
 
-  // نجوم خفيفة
   ctx.fillStyle = 'rgba(255,255,255,.55)';
   for(let i = 0; i < 40; i++){
     const x = Math.random() * rect.width;
@@ -853,125 +1095,146 @@ function setupScratch(){
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
   }
 
-  // النص الإرشادي
   ctx.fillStyle = 'rgba(255,255,255,.92)';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.font = '800 17px Cairo, sans-serif';
   ctx.fillText('اكشطوا بإصبعكم 🪙', rect.width / 2, rect.height / 2);
 
   ctx.globalCompositeOperation = 'destination-out';
 
-  let drawing = false;
-  let last = { x: 0, y: 0 };
-  let moveCount = 0;
-
+  let drawing = false, last = { x:0, y:0 }, moveCount = 0;
   function getPos(e){
     const r = scratchCanvas.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   }
-
   function punch(x, y){
-    ctx.beginPath();
-    ctx.arc(x, y, 24, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(x, y, 24, 0, Math.PI*2); ctx.fill();
   }
-
   function progress(){
     if(scratchDone) return;
     const data = ctx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
     let clear = 0;
     const total = data.length / 4;
-    for(let i = 3; i < data.length; i += 16){   // كل ٤ بكسل (تسريع)
-      if(data[i] < 40) clear++;
-    }
-    // لأننا نفحص ١ من كل ٤، النسبة تضرب بـ ٤
-    const ratio = (clear * 4) / total;
-    if(ratio > 0.52) finishScratch();
+    for(let i = 3; i < data.length; i += 16){ if(data[i] < 40) clear++; }
+    if((clear * 4) / total > 0.52) finishScratch();
   }
-
   scratchCanvas.addEventListener('pointerdown', e => {
     if(scratchDone) return;
     drawing = true;
     try{ scratchCanvas.setPointerCapture(e.pointerId); }catch(err){}
-    last = getPos(e);
-    punch(last.x, last.y);
+    last = getPos(e); punch(last.x, last.y);
   });
-
   scratchCanvas.addEventListener('pointermove', e => {
     if(!drawing || scratchDone) return;
     e.preventDefault();
     const p = getPos(e);
-    const dx = p.x - last.x;
-    const dy = p.y - last.y;
+    const dx = p.x - last.x, dy = p.y - last.y;
     const dist = Math.hypot(dx, dy);
     const steps = Math.max(1, Math.ceil(dist / 7));
-
     for(let i = 1; i <= steps; i++){
-      punch(last.x + dx * i / steps, last.y + dy * i / steps);
+      punch(last.x + dx*i/steps, last.y + dy*i/steps);
     }
-
-    last = p;
-    moveCount++;
+    last = p; moveCount++;
     if(moveCount % 7 === 0) progress();
   });
-
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => {
+  ['pointerup','pointercancel','pointerleave'].forEach(ev => {
     scratchCanvas.addEventListener(ev, () => {
       if(!drawing) return;
-      drawing = false;
-      progress();
+      drawing = false; progress();
     });
   });
 }
-
 function finishScratch(){
   if(scratchDone) return;
   scratchDone = true;
   scratchCanvas.classList.add('gone');
   burstConfetti(60);
-  try{ if(navigator.vibrate) navigator.vibrate([25, 50, 25]); }catch(e){}
-  setTimeout(() => next3.classList.remove('hidden'), 500);
+  try{ if(navigator.vibrate) navigator.vibrate([25,50,25]); }catch(e){}
+  setTimeout(() => next8.classList.remove('hidden'), 500);
 }
-
 revealNowBtn.addEventListener('click', () => {
   if(!scratchReady) setupScratch();
   finishScratch();
 });
+next8.addEventListener('click', () => showStep(9));
 
-next3.addEventListener('click', () => showStep(4));
+/* ═══ العجلة (الخطوة 9) ═══ */
+const wheel   = document.getElementById('wheel');
+const spinBtn = document.getElementById('spinBtn');
+const next9   = document.getElementById('next9');
+let wheelSpun = false;
+let totalRotation = 0;
 
-/* ══════════════════════════════════════════
-   ٧) إعادة العرض
-   ══════════════════════════════════════════ */
+function spinWheel(){
+  if(wheelSpun) return;
+  wheelSpun = true;
+  const extra = 360 * (4 + Math.floor(Math.random() * 3));
+  totalRotation += extra + 45;
+  wheel.style.transform = `rotate(${totalRotation}deg)`;
+  try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
+
+  setTimeout(() => {
+    burstConfetti(80);
+    showToast('يا رب يتمم على خير 🤍', 1200);
+    setTimeout(() => next9.classList.remove('hidden'), 900);
+  }, 4700);
+}
+spinBtn.addEventListener('click', spinWheel);
+wheel.addEventListener('click', spinWheel);
+next9.addEventListener('click', () => showStep(10));
+
+/* ═══ إعادة ═══ */
 document.getElementById('againBtn').addEventListener('click', () => {
-  // الظرف
+  // كويزات
+  document.querySelectorAll('.quiz-options').forEach(p => {
+    p.dataset.done = '0';
+    p.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('picked'));
+  });
+
+  // صناديق
+  openedBoxes = 0;
+  boxEls.forEach(b => b.classList.remove('opened'));
+  next4.classList.add('hidden');
+
+  // شريط الفرحة
+  fillLevel = 0;
+  fillBar.style.width = '0%';
+  fillPercent.textContent = '0%';
+  fillMsg.textContent = FILL_MESSAGES[0];
+  fillBtn.classList.remove('hidden');
+  next5.classList.add('hidden');
+
+  // ظرف
   envelope.classList.remove('open');
-  next1.classList.add('hidden');
+  next6.classList.add('hidden');
 
-  // البالونات
-  poppedCount = 0;
-  balloons.forEach(b => b.classList.remove('popped'));
-  slots.forEach(s => { s.classList.remove('filled'); s.textContent = '؟'; });
-  next2.classList.add('hidden');
+  // شمعة
+  candleBlown = false;
+  candle.classList.remove('blown');
+  next7.classList.add('hidden');
 
-  // الكشط
+  // كشط
   scratchReady = false;
   scratchDone  = false;
   scratchCanvas.classList.remove('gone');
   const ctx = scratchCanvas.getContext('2d');
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0, scratchCanvas.width, scratchCanvas.height);
   ctx.globalCompositeOperation = 'source-over';
-  next3.classList.add('hidden');
+  next8.classList.add('hidden');
 
-  // الكونفيتي
+  // عجلة
+  wheelSpun = false;
+  totalRotation = 0;
+  wheel.style.transition = 'none';
+  wheel.style.transform = 'rotate(0deg)';
+  setTimeout(() => { wheel.style.transition = 'transform 4.6s cubic-bezier(.16,.8,.2,1)'; }, 60);
+  next9.classList.add('hidden');
+
   document.getElementById('confetti').innerHTML = '';
-
   showStep(0);
 });
 
-/* أول تشغيل */
 showStep(0);
 </script>
 </body>
