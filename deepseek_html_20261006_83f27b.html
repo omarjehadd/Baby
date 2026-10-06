@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#fffaf5" />
+<title>خبر حلو 🎉</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --pink:#ff6fa5;
+    --gold:#f6c453;
+    --violet:#8b7bf7;
+    --sky:#66c7f4;
+    --mint:#7ce0a3;
+    --ink:#5b4a5c;
+    --muted:#9b8a9d;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{ min-height:100%; }
+
+  body{
+    font-family:'Cairo', system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(circle at 15% 12%, #ffe3ef 0%, transparent 55%),
+      radial-gradient(circle at 85% 18%, #e6e1ff 0%, transparent 55%),
+      radial-gradient(circle at 50% 96%, #d9f2ff 0%, transparent 55%),
+      #fffaf5;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding:clamp(20px,5vw,42px) clamp(12px,4vw,22px) 110px;
+    overflow-x:hidden;
+    position:relative;
+    color:var(--ink);
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  /* ============ خلفية قلوب ============ */
+  .bg-hearts{
+    position:fixed; inset:0;
+    pointer-events:none; z-index:1; overflow:hidden;
+  }
+  .bg-heart{
+    position:absolute; bottom:-12vh;
+    opacity:0; user-select:none;
+    animation-name:rise;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  @keyframes rise{
+    0%   { transform:translateY(0) rotate(0deg); opacity:0; }
+    12%  { opacity:.6; }
+    85%  { opacity:.4; }
+    100% { transform:translateY(-120vh) rotate(340deg); opacity:0; }
+  }
+
+  /* ============ كونفيتي ============ */
+  .confetti-layer{
+    position:fixed; inset:0;
+    pointer-events:none; z-index:60; overflow:hidden;
+  }
+  .confetti-piece{
+    position:absolute; top:-10vh; display:block;
+    animation-name:fall;
+    animation-timing-function:cubic-bezier(.25,.6,.4,1);
+    animation-fill-mode:forwards;
+  }
+  @keyframes fall{
+    0%   { transform:translateY(0) rotate(0deg) scale(1); opacity:1; }
+    100% { transform:translateY(120vh) rotate(760deg) scale(.9); opacity:.8; }
+  }
+
+  /* ============ المسرح ============ */
+  .stage{
+    position:relative; z-index:3;
+    width:100%; max-width:680px;
+    display:grid;
+  }
+
+  .screen{
+    grid-area:1/1;
+    width:100%;
+    display:grid; place-items:center;
+    opacity:0; pointer-events:none;
+    transform:scale(.96) translateY(16px);
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1);
+  }
+  .screen.active{
+    opacity:1; pointer-events:auto;
+    transform:none;
+  }
+
+  /* ============ اللوحات ============ */
+  .panel, .card{
+    position:relative;
+    width:100%;
+    background:rgba(255,255,255,.8);
+    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.95);
+    border-radius:34px;
+    padding:clamp(24px,5.5vw,48px) clamp(18px,5vw,44px);
+    text-align:center;
+    box-shadow:
+      0 32px 74px rgba(180,120,160,.24),
+      0 1px 0 rgba(255,255,255,.9) inset;
+    overflow:hidden;
+  }
+  .card::before, .panel::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(135deg, rgba(255,111,165,.09), transparent 45%, rgba(139,123,247,.09));
+    pointer-events:none;
+  }
+  .card > *, .panel > *{ position:relative; }
+
+  /* ============ عناصر عامة ============ */
+  .badge{
+    display:inline-block;
+    font-size:clamp(12px,3.1vw,14px);
+    font-weight:800;
+    color:#b3457a;
+    background:linear-gradient(135deg,#ffe1ef,#ffeec9);
+    border:1px solid rgba(255,111,165,.35);
+    padding:7px 18px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+
+  .step-tag{
+    display:inline-block;
+    font-size:clamp(11px,3vw,13px);
+    font-weight:800;
+    color:#7c6ba8;
+    background:rgba(139,123,247,.12);
+    border:1px solid rgba(139,123,247,.25);
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:16px;
+    letter-spacing:.3px;
+  }
+
+  .h1{
+    font-size:clamp(24px,6.4vw,38px);
+    font-weight:900;
+    line-height:1.6;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  .h2{
+    font-size:clamp(19px,5.2vw,28px);
+    font-weight:800;
+    line-height:1.7;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .p{
+    font-size:clamp(14px,3.8vw,17px);
+    font-weight:600;
+    color:var(--muted);
+    line-height:2;
+    margin-bottom:24px;
+  }
+  .hint{
+    margin-top:16px;
+    font-size:clamp(12px,3.2vw,14px);
+    font-weight:600;
+    color:#b9a9bb;
+  }
+
+  /* ============ الأزرار ============ */
+  .btn{
+    font-family:inherit;
+    font-weight:800;
+    font-size:clamp(14px,3.9vw,17px);
+    padding:14px 34px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    transition:transform .22s ease, box-shadow .22s ease, background .22s ease, opacity .3s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn.primary{
+    color:#fff;
+    background:linear-gradient(120deg,#ff6fa5,#f6a93b);
+    box-shadow:0 14px 30px rgba(255,111,165,.4);
+  }
+  .btn.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 20px 40px rgba(255,111,165,.5);
+  }
+  .btn.primary:active{ transform:translateY(0) scale(.97); }
+
+  .btn.ghost{
+    color:#8b7bf7;
+    background:rgba(255,255,255,.85);
+    border:1.5px solid rgba(139,123,247,.32);
+    font-size:clamp(12px,3.3vw,14px);
+    padding:11px 22px;
+    margin-top:14px;
+  }
+  .btn.ghost:hover{
+    background:#8b7bf7; color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(139,123,247,.35);
+  }
+
+  .hidden{ display:none !important; }
+
+  /* ============ شريط التقدم + تخطي ============ */
+  .progress{
+    position:fixed;
+    bottom:clamp(22px,5vw,34px);
+    left:50%; transform:translateX(-50%) translateY(20px);
+    display:flex; gap:9px;
+    z-index:50;
+    opacity:0; pointer-events:none;
+    transition:opacity .4s ease, transform .4s ease;
+  }
+  .progress.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .dot{
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(255,111,165,.25);
+    transition:all .35s ease;
+  }
+  .dot.on{
+    background:linear-gradient(120deg,#ff6fa5,#f6a93b);
+    width:26px; border-radius:999px;
+    box-shadow:0 4px 12px rgba(255,111,165,.45);
+  }
+
+  .skip{
+    position:fixed;
+    bottom:clamp(18px,4.5vw,30px);
+    inset-inline-end:clamp(16px,4vw,28px);
+    z-index:50;
+    font-family:inherit;
+    font-size:13px; font-weight:800;
+    color:#9b8a9d;
+    background:rgba(255,255,255,.85);
+    border:1px solid rgba(155,138,157,.22);
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    opacity:0; pointer-events:none;
+    transition:opacity .4s ease, color .2s ease, background .2s ease;
+  }
+  .skip.show{ opacity:1; pointer-events:auto; }
+  .skip:hover{ color:#6f6072; background:#fff; }
+
+  /* ============ الظرف ============ */
+  .envelope{
+    position:relative;
+    width:min(320px,80vw);
+    aspect-ratio:3/2;
+    margin:24px auto 10px;
+    perspective:1100px;
+    cursor:pointer;
+    transition:transform .3s ease;
+  }
+  .envelope:hover{ transform:translateY(-4px); }
+
+  .env-back{
+    position:absolute; inset:0;
+    background:linear-gradient(160deg,#ffd9e8,#ffb3d1);
+    border-radius:12px;
+    box-shadow:0 22px 46px rgba(255,111,165,.32);
+  }
+  .env-letter{
+    position:absolute;
+    left:6%; right:6%; bottom:8%;
+    height:80%;
+    background:linear-gradient(170deg,#fffdf9,#fff6fb);
+    border-radius:10px;
+    display:grid; place-items:center;
+    padding:14px 18px;
+    text-align:center;
+    font-size:clamp(13px,3.6vw,16px);
+    font-weight:700;
+    line-height:1.9;
+    color:#7a6a7d;
+    z-index:2;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:transform .85s cubic-bezier(.2,.85,.3,1) .28s;
+  }
+  .env-flap{
+    position:absolute; top:0; left:0; right:0;
+    height:62%;
+    background:linear-gradient(160deg,#ffc2da,#ff9dc2);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    border-radius:12px 12px 0 0;
+    transform-origin:top center;
+    transition:transform .7s cubic-bezier(.4,0,.2,1);
+    z-index:3;
+  }
+  .env-front{
+    position:absolute; inset:0;
+    background:linear-gradient(160deg,#ffcfe2,#ff9ec4);
+    clip-path:polygon(0 100%, 0 36%, 50% 76%, 100% 36%, 100% 100%);
+    border-radius:0 0 12px 12px;
+    z-index:4;
+  }
+  .seal{
+    position:absolute;
+    bottom:4px; left:50%;
+    transform:translateX(-50%);
+    width:36px; height:36px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff8fb8,#e8457f);
+    color:#fff; font-size:16px;
+    display:grid; place-items:center;
+    box-shadow:0 5px 12px rgba(200,60,110,.35);
+  }
+  .envelope.open .env-flap{ transform:rotateX(180deg); }
+  .envelope.open .env-letter{ transform:translateY(-64%); }
+
+  /* ============ البالونات ============ */
+  .slots{
+    display:flex; justify-content:center;
+    gap:clamp(8px,2.6vw,14px);
+    margin:8px 0 6px;
+    direction:rtl;
+  }
+  .slot{
+    width:clamp(44px,12.5vw,58px);
+    height:clamp(44px,12.5vw,58px);
+    display:grid; place-items:center;
+    border-radius:16px;
+    background:rgba(255,255,255,.65);
+    border:2px dashed rgba(255,111,165,.38);
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(22px,6.5vw,30px);
+    font-weight:700;
+    color:#c9b9cc;
+    transition:background .3s ease, border-color .3s ease;
+  }
+  .slot.filled{
+    color:#c04a86;
+    border-style:solid;
+    border-color:transparent;
+    background:linear-gradient(135deg,#ffe1ef,#ffeec9);
+    animation:slotPop .5s cubic-bezier(.2,1.5,.4,1);
+  }
+  @keyframes slotPop{
+    0%  { transform:scale(.35) rotate(-14deg); opacity:0; }
+    60% { transform:scale(1.12) rotate(4deg); }
+    100%{ transform:scale(1) rotate(0); opacity:1; }
+  }
+
+  .balloons{
+    display:flex; justify-content:center;
+    gap:clamp(6px,2.6vw,24px);
+    margin:26px 0 6px;
+    flex-wrap:wrap;
+    direction:rtl;
+  }
+  .balloon{
+    position:relative;
+    width:clamp(56px,15.5vw,76px);
+    height:clamp(70px,19.5vw,94px);
+    padding:0; border:none; cursor:pointer;
+    border-radius:50% 50% 48% 48% / 44% 44% 56% 56%;
+    background:
+      radial-gradient(circle at 32% 26%, rgba(255,255,255,.9), transparent 44%),
+      linear-gradient(165deg, var(--c1), var(--c2));
+    box-shadow:
+      inset -6px -10px 18px rgba(0,0,0,.10),
+      0 12px 24px rgba(255,111,165,.22);
+    transition:transform .2s ease;
+    animation:balloonFloat 3.2s ease-in-out infinite;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .balloon:hover{ transform:scale(1.08); }
+  .balloon::before{
+    content:''; position:absolute;
+    bottom:-5px; left:50%; transform:translateX(-50%);
+    width:0; height:0;
+    border-left:7px solid transparent;
+    border-right:7px solid transparent;
+    border-top:9px solid var(--c2);
+    z-index:2;
+  }
+  .balloon::after{
+    content:''; position:absolute;
+    top:100%; left:50%; transform:translateX(-50%);
+    width:1.5px; height:44px;
+    background:rgba(140,120,150,.4);
+    border-radius:0 0 45% 45%;
+  }
+  .balloon.popped{
+    animation:popOut .4s ease forwards;
+    animation-delay:0s !important;
+    pointer-events:none;
+  }
+  @keyframes balloonFloat{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%    { transform:translateY(-11px) rotate(2deg); }
+  }
+  @keyframes popOut{
+    0%  { transform:scale(1);   opacity:1; }
+    35% { transform:scale(1.28); opacity:1; }
+    100%{ transform:scale(.15); opacity:0; }
+  }
+
+  /* ============ بطاقة الكشط ============ */
+  .scratch-wrap{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    margin:22px auto 4px;
+    aspect-ratio:5/3;
+    border-radius:24px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#fff4f9,#eef0ff);
+    box-shadow:
+      0 0 0 2px rgba(255,255,255,.9) inset,
+      0 16px 38px rgba(180,120,160,.2);
+  }
+  .scratch-reveal{
+    position:absolute; inset:0;
+    display:grid; place-content:center;
+    gap:4px; text-align:center; padding:14px;
+  }
+  .sr-small{
+    font-size:clamp(13px,3.6vw,17px);
+    font-weight:700;
+    color:var(--muted);
+  }
+  .sr-big{
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700;
+    font-size:clamp(28px,9vw,52px);
+    line-height:1.4;
+    background:linear-gradient(100deg,#ff6fa5,#f6a93b,#8b7bf7);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 5px 12px rgba(255,111,165,.22));
+  }
+  #scratchCanvas{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    display:block;
+    cursor:crosshair;
+    touch-action:none;
+    transition:opacity .65s ease;
+  }
+  #scratchCanvas.gone{ opacity:0; pointer-events:none; }
+
+  /* ============ البطاقة النهائية ============ */
+  .to{
+    font-size:clamp(15px,4.1vw,21px);
+    font-weight:800;
+    color:#6b5a6d;
+    margin-bottom:14px;
+  }
+  .big span{
+    display:block;
+    font-size:clamp(14px,3.8vw,18px);
+    font-weight:700;
+    color:#8d7b90;
+    margin-bottom:2px;
+  }
+  .big strong{
+    display:block;
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700;
+    font-size:clamp(38px,12vw,74px);
+    line-height:1.35;
+    background:linear-gradient(100deg,#ff6fa5 0%,#f6a93b 48%,#8b7bf7 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 6px 14px rgba(255,111,165,.24));
+  }
+  .emoji-row{
+    font-size:clamp(26px,7.5vw,38px);
+    letter-spacing:10px;
+    margin:8px 0 18px;
+    animation:bounceRow 2.6s ease-in-out infinite;
+  }
+  @keyframes bounceRow{
+    0%,100%{ transform:translateY(0); }
+    50%    { transform:translateY(-8px); }
+  }
+  .msg{
+    font-size:clamp(14px,3.8vw,17px);
+    line-height:2.1;
+    color:#6f6072;
+    font-weight:600;
+    max-width:460px;
+    margin:0 auto;
+  }
+  .divider{
+    display:flex; align-items:center; gap:12px;
+    margin:26px 0 18px;
+  }
+  .divider::before, .divider::after{
+    content:''; flex:1; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,111,165,.5), transparent);
+  }
+  .divider span{ font-size:18px; }
+  .from{
+    font-size:clamp(13px,3.5vw,16px);
+    color:var(--muted);
+    font-weight:700;
+  }
+  .from .name{
+    color:#c04a86;
+    font-weight:800;
+    border-bottom:2px dashed rgba(255,111,165,.5);
+    padding-bottom:2px;
+  }
+
+  /* ظهور متتالي لعناصر البطاقة النهائية */
+  .screen.active .card > *{ animation:fadeUp .75s cubic-bezier(.2,.8,.3,1) both; }
+  .screen.active .card > *:nth-child(1){ animation-delay:.10s; }
+  .screen.active .card > *:nth-child(2){ animation-delay:.22s; }
+  .screen.active .card > *:nth-child(3){ animation-delay:.34s; }
+  .screen.active .card > *:nth-child(4){ animation-delay:.46s; }
+  .screen.active .card > *:nth-child(5){ animation-delay:.58s; }
+  .screen.active .card > *:nth-child(6){ animation-delay:.70s; }
+  .screen.active .card > *:nth-child(7){ animation-delay:.82s; }
+  .screen.active .card > *:nth-child(8){ animation-delay:.94s; }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(22px); }
+    to  { opacity:1; transform:translateY(0); }
+  }
+
+  @media (max-width:420px){
+    .panel, .card{ border-radius:28px; }
+    .emoji-row{ letter-spacing:6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="bg-hearts" id="bgHearts" aria-hidden="true"></div>
+  <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+
+  <main class="stage">
+
+    <!-- ═══════════ الخطوة 0: التمهيد ═══════════ -->
+    <section class="screen active" data-step="0">
+      <div class="panel">
+        <span class="badge">🤫 قبل ما نبدأ</span>
+        <h1 class="h1">في خبر حلو كتير…</h1>
+        <p class="p">بس بدنا نتأكد إنكم جاهزين 😄</p>
+        <button class="btn primary" id="startBtn">جاهزين! يلا 👇</button>
+        <p class="hint">الخبر رح يوصل بعد ٤ خطوات صغيرة</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ الخطوة 1: الظرف ═══════════ -->
+    <section class="screen" data-step="1">
+      <div class="panel">
+        <span class="step-tag">الخطوة ١ من ٤</span>
+        <h2 class="h2">افتحوا الظرف 💌</h2>
+        <p class="p" style="margin-bottom:6px">في شي جوّا… بس بدو شوية صبر</p>
+
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="افتحوا الظرف">
+          <div class="env-back"></div>
+          <div class="env-letter">
+            <span>الخبر جوّا هالظرف…<br>بس لسا بدو شوية صبر 💛</span>
+          </div>
+          <div class="env-flap"><span class="seal">❤</span></div>
+          <div class="env-front"></div>
+        </div>
+
+        <button class="btn primary hidden" id="next1">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ الخطوة 2: البالونات ═══════════ -->
+    <section class="screen" data-step="2">
+      <div class="panel">
+        <span class="step-tag">الخطوة ٢ من ٤</span>
+        <h2 class="h2">فقعوا البالونات الأربعة 🎈</h2>
+        <p class="p" style="margin-bottom:14px">كل بالون بيطلع حرف… جمّعوهم</p>
+
+        <div class="slots" id="slots">
+          <span class="slot" data-i="0">؟</span>
+          <span class="slot" data-i="1">؟</span>
+          <span class="slot" data-i="2">؟</span>
+          <span class="slot" data-i="3">؟</span>
+        </div>
+
+        <div class="balloons" id="balloons">
+          <button class="balloon" data-i="0" data-letter="ح" style="--c1:#ffb3d1;--c2:#ff5f9e; animation-delay:0s" aria-label="بالون ١"></button>
+          <button class="balloon" data-i="1" data-letter="ف" style="--c1:#b8c6ff;--c2:#6f7bf7; animation-delay:.35s" aria-label="بالون ٢"></button>
+          <button class="balloon" data-i="2" data-letter="ي" style="--c1:#ffe0a3;--c2:#f0a83c; animation-delay:.7s" aria-label="بالون ٣"></button>
+          <button class="balloon" data-i="3" data-letter="د" style="--c1:#a8ebc4;--c2:#3fc47c; animation-delay:1.05s" aria-label="بالون ٤"></button>
+        </div>
+
+        <button class="btn primary hidden" id="next2">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ الخطوة 3: الكشط ═══════════ -->
+    <section class="screen" data-step="3">
+      <div class="panel">
+        <span class="step-tag">الخطوة ٣ من ٤</span>
+        <h2 class="h2">اكشطوا البطاقة بإصبعكم 🪙</h2>
+        <p class="p" style="margin-bottom:6px">مرّروا إصبعكم فوق البطاقة… وشوفوا شو مستخبّي</p>
+
+        <div class="scratch-wrap">
+          <div class="scratch-reveal">
+            <span class="sr-small">رح تصيروا</span>
+            <span class="sr-big">جدّو وتيتا</span>
+          </div>
+          <canvas id="scratchCanvas"></canvas>
+        </div>
+
+        <button class="btn ghost" id="revealNow">مش قادرين نكشط؟ اضغطوا هون</button>
+        <button class="btn primary hidden" id="next3">كمّلوا 👈</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ الخطوة 4: الخبر ═══════════ -->
+    <section class="screen" data-step="4">
+      <div class="card">
+        <div class="badge">🎉 خبر حلو كتير 🎉</div>
+
+        <h2 class="to">لأحلى أب وأم وأخوات 💛</h2>
+
+        <div class="big">
+          <span>رح تصيروا</span>
+          <strong>جدّو وتيتا</strong>
+        </div>
+
+        <div class="emoji-row">👶 🍼 ✨</div>
+
+        <p class="msg">
+          قلبنا مليان فرح، ومنستنى هالضيف الصغير بفارغ الصبر.<br>
+          الله يتمم على خير ويجعله من الصالحين 🤍
+        </p>
+
+        <div class="divider"><span>💛</span></div>
+
+        <p class="from">من: <span class="name">[اكتب اسمك هون]</span></p>
+
+        <button class="btn ghost" id="againBtn" style="margin-top:22px">🔁 شوفوا الخبر مرة تانية</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- تقدم + تخطي -->
+  <div class="progress" id="progress" aria-hidden="true">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  <button class="skip" id="skipBtn">تخطي ⏭</button>
+
+<script>
+/* ══════════════════════════════════════════
+   ١) قلوب الخلفية
+   ══════════════════════════════════════════ */
+(function createHearts(){
+  const box = document.getElementById('bgHearts');
+  const glyphs = ['💛','🤍','💗','✨','🍼','👶','💫','🎈'];
+  for(let i = 0; i < 18; i++){
+    const h = document.createElement('span');
+    h.className = 'bg-heart';
+    h.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+    h.style.left = (Math.random() * 100) + 'vw';
+    h.style.fontSize = (12 + Math.random() * 20) + 'px';
+    h.style.animationDuration = (12 + Math.random() * 14) + 's';
+    h.style.animationDelay = (-Math.random() * 24) + 's';
+    box.appendChild(h);
+  }
+})();
+
+/* ══════════════════════════════════════════
+   ٢) الكونفيتي
+   ══════════════════════════════════════════ */
+const COLORS = ['#ff6fa5','#f6c453','#8b7bf7','#66c7f4','#7ce0a3','#ff9f7a','#ffffff'];
+
+function burstConfetti(count){
+  const layer = document.getElementById('confetti');
+  const total = count || 130;
+  const frag = document.createDocumentFragment();
+
+  for(let i = 0; i < total; i++){
+    const p = document.createElement('i');
+    p.className = 'confetti-piece';
+
+    const size = 6 + Math.random() * 10;
+    p.style.left = (Math.random() * 100) + 'vw';
+    p.style.width = size + 'px';
+    p.style.height = (size * (0.6 + Math.random() * 0.9)) + 'px';
+    p.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+    p.style.animationDuration = (2.6 + Math.random() * 2.8) + 's';
+    p.style.animationDelay = (Math.random() * 1.4) + 's';
+    p.style.opacity = (0.7 + Math.random() * 0.3).toFixed(2);
+
+    if(Math.random() > 0.65) p.style.borderRadius = '50%';
+    if(Math.random() > 0.85) p.style.transform = 'rotate(45deg)';
+
+    frag.appendChild(p);
+  }
+
+  layer.innerHTML = '';
+  layer.appendChild(frag);
+  setTimeout(() => { layer.innerHTML = ''; }, 9000);
+}
+
+/* ══════════════════════════════════════════
+   ٣) التنقل بين الخطوات
+   ══════════════════════════════════════════ */
+const screens   = document.querySelectorAll('.screen');
+const progressEl = document.getElementById('progress');
+const dots      = document.querySelectorAll('.dot');
+const skipBtn   = document.getElementById('skipBtn');
+let currentStep = 0;
+
+function showStep(n){
+  currentStep = n;
+
+  screens.forEach(s => {
+    s.classList.toggle('active', Number(s.dataset.step) === n);
+  });
+
+  // شريط التقدم (يظهر بالخطوات ١-٣)
+  progressEl.classList.toggle('show', n >= 1 && n <= 3);
+  dots.forEach((d, i) => d.classList.toggle('on', i < n));
+
+  // زر التخطي
+  skipBtn.classList.toggle('show', n >= 1 && n <= 3);
+
+  // تجهيز الكشط
+  if(n === 3) setTimeout(setupScratch, 80);
+
+  // كونفيتي للخبر النهائي
+  if(n === 4){
+    burstConfetti(150);
+    setTimeout(() => burstConfetti(80), 850);
+    try{ if(navigator.vibrate) navigator.vibrate([40, 70, 40, 70, 60]); }catch(e){}
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* زر البداية */
+document.getElementById('startBtn').addEventListener('click', () => showStep(1));
+
+/* زر التخطي → يروح مباشرة للخبر */
+skipBtn.addEventListener('click', () => showStep(4));
+
+/* ══════════════════════════════════════════
+   ٤) الخطوة ١ — الظرف
+   ══════════════════════════════════════════ */
+const envelope = document.getElementById('envelope');
+const next1    = document.getElementById('next1');
+
+function openEnvelope(){
+  if(envelope.classList.contains('open')) return;
+  envelope.classList.add('open');
+  try{ if(navigator.vibrate) navigator.vibrate(25); }catch(e){}
+  setTimeout(() => next1.classList.remove('hidden'), 950);
+}
+
+envelope.addEventListener('click', openEnvelope);
+envelope.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnvelope(); }
+});
+next1.addEventListener('click', () => showStep(2));
+
+/* ══════════════════════════════════════════
+   ٥) الخطوة ٢ — البالونات
+   ══════════════════════════════════════════ */
+const balloons = document.querySelectorAll('.balloon');
+const slots    = document.querySelectorAll('.slot');
+const next2    = document.getElementById('next2');
+let poppedCount = 0;
+
+balloons.forEach(b => {
+  b.addEventListener('click', () => {
+    if(b.classList.contains('popped')) return;
+    b.classList.add('popped');
+    try{ if(navigator.vibrate) navigator.vibrate(18); }catch(e){}
+
+    const i = Number(b.dataset.i);
+    const slot = slots[i];
+    if(slot && !slot.classList.contains('filled')){
+      slot.textContent = b.dataset.letter;
+      slot.classList.add('filled');
+    }
+
+    poppedCount++;
+    if(poppedCount === balloons.length){
+      setTimeout(() => {
+        next2.classList.remove('hidden');
+        burstConfetti(50);
+      }, 420);
+    }
+  });
+});
+next2.addEventListener('click', () => showStep(3));
+
+/* ══════════════════════════════════════════
+   ٦) الخطوة ٣ — بطاقة الكشط
+   ══════════════════════════════════════════ */
+const scratchCanvas = document.getElementById('scratchCanvas');
+const next3         = document.getElementById('next3');
+const revealNowBtn  = document.getElementById('revealNow');
+let scratchReady    = false;
+let scratchDone     = false;
+
+function setupScratch(){
+  if(scratchReady || scratchDone) return;
+  scratchReady = true;
+
+  const wrap = scratchCanvas.parentElement;
+  const rect = wrap.getBoundingClientRect();
+  if(!rect.width){ scratchReady = false; setTimeout(setupScratch, 120); return; }
+
+  const dpr = window.devicePixelRatio || 1;
+  scratchCanvas.width  = Math.round(rect.width  * dpr);
+  scratchCanvas.height = Math.round(rect.height * dpr);
+
+  const ctx = scratchCanvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  // طبقة الكشط
+  const g = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+  g.addColorStop(0,   '#d8c9f2');
+  g.addColorStop(0.5, '#f3c9de');
+  g.addColorStop(1,   '#f8ddb3');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, rect.width, rect.height);
+
+  // نجوم خفيفة
+  ctx.fillStyle = 'rgba(255,255,255,.55)';
+  for(let i = 0; i < 40; i++){
+    const x = Math.random() * rect.width;
+    const y = Math.random() * rect.height;
+    const r = Math.random() * 1.8 + 0.4;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // النص الإرشادي
+  ctx.fillStyle = 'rgba(255,255,255,.92)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = '800 17px Cairo, sans-serif';
+  ctx.fillText('اكشطوا بإصبعكم 🪙', rect.width / 2, rect.height / 2);
+
+  ctx.globalCompositeOperation = 'destination-out';
+
+  let drawing = false;
+  let last = { x: 0, y: 0 };
+  let moveCount = 0;
+
+  function getPos(e){
+    const r = scratchCanvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  function punch(x, y){
+    ctx.beginPath();
+    ctx.arc(x, y, 24, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function progress(){
+    if(scratchDone) return;
+    const data = ctx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
+    let clear = 0;
+    const total = data.length / 4;
+    for(let i = 3; i < data.length; i += 16){   // كل ٤ بكسل (تسريع)
+      if(data[i] < 40) clear++;
+    }
+    // لأننا نفحص ١ من كل ٤، النسبة تضرب بـ ٤
+    const ratio = (clear * 4) / total;
+    if(ratio > 0.52) finishScratch();
+  }
+
+  scratchCanvas.addEventListener('pointerdown', e => {
+    if(scratchDone) return;
+    drawing = true;
+    try{ scratchCanvas.setPointerCapture(e.pointerId); }catch(err){}
+    last = getPos(e);
+    punch(last.x, last.y);
+  });
+
+  scratchCanvas.addEventListener('pointermove', e => {
+    if(!drawing || scratchDone) return;
+    e.preventDefault();
+    const p = getPos(e);
+    const dx = p.x - last.x;
+    const dy = p.y - last.y;
+    const dist = Math.hypot(dx, dy);
+    const steps = Math.max(1, Math.ceil(dist / 7));
+
+    for(let i = 1; i <= steps; i++){
+      punch(last.x + dx * i / steps, last.y + dy * i / steps);
+    }
+
+    last = p;
+    moveCount++;
+    if(moveCount % 7 === 0) progress();
+  });
+
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => {
+    scratchCanvas.addEventListener(ev, () => {
+      if(!drawing) return;
+      drawing = false;
+      progress();
+    });
+  });
+}
+
+function finishScratch(){
+  if(scratchDone) return;
+  scratchDone = true;
+  scratchCanvas.classList.add('gone');
+  burstConfetti(60);
+  try{ if(navigator.vibrate) navigator.vibrate([25, 50, 25]); }catch(e){}
+  setTimeout(() => next3.classList.remove('hidden'), 500);
+}
+
+revealNowBtn.addEventListener('click', () => {
+  if(!scratchReady) setupScratch();
+  finishScratch();
+});
+
+next3.addEventListener('click', () => showStep(4));
+
+/* ══════════════════════════════════════════
+   ٧) إعادة العرض
+   ══════════════════════════════════════════ */
+document.getElementById('againBtn').addEventListener('click', () => {
+  // الظرف
+  envelope.classList.remove('open');
+  next1.classList.add('hidden');
+
+  // البالونات
+  poppedCount = 0;
+  balloons.forEach(b => b.classList.remove('popped'));
+  slots.forEach(s => { s.classList.remove('filled'); s.textContent = '؟'; });
+  next2.classList.add('hidden');
+
+  // الكشط
+  scratchReady = false;
+  scratchDone  = false;
+  scratchCanvas.classList.remove('gone');
+  const ctx = scratchCanvas.getContext('2d');
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+  ctx.globalCompositeOperation = 'source-over';
+  next3.classList.add('hidden');
+
+  // الكونفيتي
+  document.getElementById('confetti').innerHTML = '';
+
+  showStep(0);
+});
+
+/* أول تشغيل */
+showStep(0);
+</script>
+</body>
+</html>
